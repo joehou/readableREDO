@@ -1,0 +1,503 @@
+Index: src/App.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  vertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\nbody {\n  line-height: 1;\n  font-size:14px;\n}\nol, ul {\n  list-style: none;\n}\nblockquote, q {\n  quotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none;\n}\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;\n}\n\n/** {*/\n  /*border: 1px solid red !important;*/\n/*}*/\n\n.header {\n  background: deepskyblue;\n    color:white;\n}\n\n\n.logo{\n  justify-content: flex-start;\n  margin-left:15px;\n  margin-top:5px;\n  min-width:250px;\n}\n\n.navigation{\n  list-style: none;\n  margin: 0;\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-flex-flow: row wrap;\n  justify-content: flex-start;\n}\n.navigation a {\n  text-decoration: none;\n  display: block;\n  padding: 1em;\n  color: white;\n  list-style: none;\n  margin: 0;\n  background: deepskyblue;\n\n}\n\n.navigation a:hover {\n  background: #00b7f5;\n}\n\n.categories{\n    background: #fafafa!important;\n    border-right:1px #e1e4e8 solid;\n  padding:20px;\n}\n\n.categories li a{\n    position: relative;\n    display: block;\n    padding: 10px;\n    margin-bottom: 5px;\n    overflow: hidden;\n    color: #586069;\n    text-decoration: none;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    cursor: pointer;\n    border-radius: 3px;\n}\n\n.categories li a:hover {\n    text-decoration: none;\n    background-color: #eaecef;\n}\n\n\n.categories-selected {\n  text-decoration: none;\n  background-color: #eaecef;\n}\n\n.posts{\n  padding:20px;\n  display:flex;\n  flex-direction: column;\n}\n\n.post{\n  background: #fff;\n  box-shadow: 0 1px 4px rgba(0,0,0,.04);\n  border: 1px solid rgba(0,0,0,.09);\n  border-radius: 3px;\n  padding:20px;\n  margin-top: 20px;\n}\n\n\n@media all and (max-width: 800px) {\n  .navigation {\n    justify-content: space-around;\n  }\n}\n\n@media all and (max-width: 600px) {\n  .navigation {\n    -webkit-flex-flow: column wrap;\n    flex-flow: column wrap;\n    padding: 0;\n  }\n\n  .navigation a {\n    text-align: center;\n    padding: 10px;\n    border-top: 1px solid rgba(255, 255, 255, 0.3);\n    border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  }\n\n  .navigation li:last-of-type a {\n    border-bottom: none;\n  }\n}\n\n* {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  box-sizing: border-box;\n}\n\n.grid {\n  margin: 0 auto;\n  max-width: 1200px;\n  width: 100%;\n}\n\n.row {\n  width: 100%;\n  margin-bottom: 10px;\n  display: flex;\n}\n\n.col-1 {\n  width: 8.33%;\n}\n\n.col-2 {\n  width: 16.66%;\n}\n\n.col-3 {\n  width: 25%;\n}\n\n.col-4 {\n  width: 33.33%;\n}\n\n.col-5 {\n  width: 41.66%;\n}\n\n.col-6 {\n  width: 50%;\n}\n\n.col-7 {\n  width: 58.33%;\n}\n\n.col-8 {\n  width: 66.66%;\n}\n\n.col-9 {\n  width: 75%;\n}\n\n.col-10 {\n  width: 83.33%;\n}\n\n.col-11 {\n  width: 91.66%;\n}\n\n.col-12 {\n  width: 100%;\n}\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/App.css	(date 1504506306000)
++++ src/App.css	(revision )
+@@ -138,6 +138,21 @@
+   margin-top: 20px;
+ }
+ 
++.posts-header {
++  list-style: none;
++  margin: 0;
++  display: -webkit-box;
++  display: -moz-box;
++  display: -ms-flexbox;
++  display: -webkit-flex;
++  display: flex;
++  justify-content: flex-start;
++  -webkit-flex-flow: row wrap;
++}
++
++.posts-header select{
++  margin-left: auto;
++}
+ 
+ @media all and (max-width: 800px) {
+   .navigation {
+Index: src/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react';\nimport ReactDOM from 'react-dom';\nimport './index.css';\nimport App from './App';\nimport registerServiceWorker from './registerServiceWorker';\nimport {createStore, applyMiddleware, compose} from 'redux'\nimport reducer from './reducers'\nimport {Provider} from 'react-redux'\nimport logger from 'redux-logger'\nimport thunk from 'redux-thunk'\nimport {loadCategories} from './actions'\n\nconst composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose\nconst store = createStore(\n    reducer,\n    composeEnhancers(\n        applyMiddleware(thunk,logger)\n    )\n)\n\nstore.dispatch(loadCategories());\n\nReactDOM.render(\n    <Provider store={store}>\n        <App />\n    </Provider>\n    , document.getElementById('root')\n);\n\nregisterServiceWorker();\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/index.js	(date 1504506306000)
++++ src/index.js	(revision )
+@@ -1,5 +1,6 @@
+ import React from 'react';
+ import ReactDOM from 'react-dom';
++import {Route, Link} from 'react-router-dom'
+ import './index.css';
+ import App from './App';
+ import registerServiceWorker from './registerServiceWorker';
+@@ -8,7 +9,8 @@
+ import {Provider} from 'react-redux'
+ import logger from 'redux-logger'
+ import thunk from 'redux-thunk'
+-import {loadCategories} from './actions'
++import {BrowserRouter} from 'react-router-dom'
++import {loadCategories,loadPosts} from './actions'
+ 
+ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+ const store = createStore(
+@@ -18,11 +20,11 @@
+     )
+ )
+ 
+-store.dispatch(loadCategories());
+-
+ ReactDOM.render(
+     <Provider store={store}>
+-        <App />
++        <BrowserRouter>
++            <App />
++        </BrowserRouter>
+     </Provider>
+     , document.getElementById('root')
+ );
+Index: src/components/PostsList.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/PostsList.js	(revision )
++++ src/components/PostsList.js	(revision )
+@@ -0,0 +1,52 @@
++import React,{Component} from 'react'
++import {loadCategories,loadPosts,loadPostsByCategory,selectCategory,sortByColumn} from '../actions'
++import sortBy from 'sort-by'
++import {connect} from 'react-redux'
++
++class PostList extends Component{
++
++  componentDidMount() {
++    this.props.loadPostsByCategory()
++  }
++
++
++
++  render() {
++    return(
++      <div className="posts col-9">
++        <div className="posts-header row">
++          <h2>posts</h2>
++          <select className="" onChange={event => this.props.sortByColumn(event.target.value)}>
++            <option value="voteScore">Vote Score</option>
++            <option value="timestamp">Time</option>
++            <option value="Author">Author</option>
++          </select>
++        </div>
++        {this.props.posts.map(post=>
++          <div className="post">
++            <h3>{post.title} - {post.voteScore} - {post.timestamp} -  {post.author}</h3>
++            <p>{post.body}</p>
++          </div>
++        )}
++      </div>
++    )
++  }
++
++}
++
++function mapStateToProps(state,ownProps) {
++  const { posts} = state
++  return {
++    posts: posts.posts.slice().sort(sortBy("-"+posts.sortColumn))
++  }
++}
++
++function mapDispatchToProps(dispatch){
++  return{
++    loadPosts: () => dispatch(loadPosts()),
++    loadPostsByCategory: (category) => dispatch(loadPostsByCategory(category)),
++    sortByColumn: (data)=> dispatch(sortByColumn(data))
++  }
++}
++
++export default connect(mapStateToProps,mapDispatchToProps)(PostList)
+\ No newline at end of file
+Index: src/App.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { Component } from 'react'\nimport { connect } from 'react-redux'\nimport {selectCategory} from './actions'\nimport FaLeanpub from 'react-icons/lib/fa/leanpub'\nimport './App.css';\nimport CategoryList from './components/CategoryList'\n\nclass App extends Component {\n  render() {\n    const {categories,selectedCategory}  =this.props\n    const {selectCategory} = this.props\n\n    return (\n      <div className=\"App\">\n          <div className=\"header\">\n              <div className=\"grid row\">\n              <h1 className='logo col-3'><FaLeanpub size={30}/> Readable</h1>\n              <ul className=\"navigation col-9\">\n                  <li><a href=\"#\">Home</a></li>\n                  <li><a href=\"#\">About</a></li>\n                  <li><a href=\"#\">Contact</a></li>\n              </ul>\n              </div>\n          </div>\n          <div className=\"grid\">\n              <div className=\"main row\">\n                  <CategoryList categories={categories} selectedCategory={selectedCategory} onSelectCategory={selectCategory} />\n                  <div className=\"posts col-9\">\n                    <h2>Posts</h2>\n                    <div className=\"post\">\n                      <p>\n                          <b>Monitor the impact of your code changes. Measure performance, track errors,</b>\n                          <br/>and analyze your application.\n                      </p>\n                    </div>\n                      <div className=\"post\">\n                          <p>\n                              <b>Monitor the impact of your code changes. Measure performance, track errors,</b>\n                              <br/>and analyze your application.\n                                   To get started, edit <code>src/App.js</code> and save to reload.\n                          </p>\n                      </div>\n                      <div className=\"post\">\n                          <p>\n                              <b>Monitor the impact of your code changes. Measure performance, track errors,</b>\n                              <br/>and analyze your application.\n                                   To get started, edit <code>src/App.js</code> and save to reload.\n                          </p>\n                      </div>\n                      <div className=\"post\">\n                          <p>\n                              <b>Monitor the impact of your code changes. Measure performance, track errors,</b>\n                              <br/>and analyze your application.\n                                   To get started, edit <code>src/App.js</code> and save to reload.\n                          </p>\n                      </div>\n                      <div className=\"post\">\n                          <p>\n                              <b>Monitor the impact of your code changes. Measure performance, track errors,</b>\n                              <br/>and analyze your application.\n                                   To get started, edit <code>src/App.js</code> and save to reload.\n                          </p>\n                      </div>\n                      <div className=\"post\">\n                          <p>\n                              <b>Monitor the impact of your code changes. Measure performance, track errors,</b>\n                              <br/>and analyze your application.\n                                   To get started, edit <code>src/App.js</code> and save to reload.\n                          </p>\n                      </div>\n                      <div className=\"post\">\n                          <p>\n                              <b>Monitor the impact of your code changes. Measure performance, track errors,</b>\n                              <br/>and analyze your application.\n                                   To get started, edit <code>src/App.js</code> and save to reload.\n                          </p>\n                      </div><div className=\"post\">\n                      <p>\n                          <b>Monitor the impact of your code changes. Measure performance, track errors,</b>\n                          <br/>and analyze your application.\n                               To get started, edit <code>src/App.js</code> and save to reload.\n                      </p>\n                  </div>\n\n\n                  </div>\n              </div>\n          </div>\n      </div>\n    );\n  }\n}\n\nfunction mapStateToProps(state) {\n    const { posts} = state\n    return {\n        selectedCategory: posts.selectedCategory,\n        categories: posts.categories,\n        posts: posts.posts\n }\n}\n\nfunction mapDispatchToProps(dispatch){\n    return{\n        selectCategory: (data)=> dispatch(selectCategory(data))\n    }\n}\n\nexport default connect(mapStateToProps, mapDispatchToProps)(App)\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/App.js	(date 1504506306000)
++++ src/App.js	(revision )
+@@ -1,15 +1,23 @@
+ import React, { Component } from 'react'
+ import { connect } from 'react-redux'
+-import {selectCategory} from './actions'
++import {Route, Switch,Link} from 'react-router-dom'
++import {loadCategories,loadPosts,loadPostsByCategory,selectCategory,sortByColumn} from './actions'
+ import FaLeanpub from 'react-icons/lib/fa/leanpub'
+ import './App.css';
++import sortBy from 'sort-by'
+ import CategoryList from './components/CategoryList'
++import PostsList from './components/PostsList'
+ 
+ class App extends Component {
+-  render() {
+-    const {categories,selectedCategory}  =this.props
+-    const {selectCategory} = this.props
+-
++
++  componentDidMount() {
++      this.props.loadCategories();
++
++  }
++
++    render() {
++    const {categories,selectedCategory,posts}  =this.props
++    const {selectCategory,sortByColumn} = this.props
+     return (
+       <div className="App">
+           <div className="header">
+@@ -25,65 +33,10 @@
+           <div className="grid">
+               <div className="main row">
+                   <CategoryList categories={categories} selectedCategory={selectedCategory} onSelectCategory={selectCategory} />
+-                  <div className="posts col-9">
+-                    <h2>Posts</h2>
+-                    <div className="post">
+-                      <p>
+-                          <b>Monitor the impact of your code changes. Measure performance, track errors,</b>
+-                          <br/>and analyze your application.
+-                      </p>
+-                    </div>
+-                      <div className="post">
+-                          <p>
+-                              <b>Monitor the impact of your code changes. Measure performance, track errors,</b>
+-                              <br/>and analyze your application.
+-                                   To get started, edit <code>src/App.js</code> and save to reload.
+-                          </p>
+-                      </div>
+-                      <div className="post">
+-                          <p>
+-                              <b>Monitor the impact of your code changes. Measure performance, track errors,</b>
+-                              <br/>and analyze your application.
+-                                   To get started, edit <code>src/App.js</code> and save to reload.
+-                          </p>
+-                      </div>
+-                      <div className="post">
+-                          <p>
+-                              <b>Monitor the impact of your code changes. Measure performance, track errors,</b>
+-                              <br/>and analyze your application.
+-                                   To get started, edit <code>src/App.js</code> and save to reload.
+-                          </p>
+-                      </div>
+-                      <div className="post">
+-                          <p>
+-                              <b>Monitor the impact of your code changes. Measure performance, track errors,</b>
+-                              <br/>and analyze your application.
+-                                   To get started, edit <code>src/App.js</code> and save to reload.
+-                          </p>
+-                      </div>
+-                      <div className="post">
+-                          <p>
+-                              <b>Monitor the impact of your code changes. Measure performance, track errors,</b>
+-                              <br/>and analyze your application.
+-                                   To get started, edit <code>src/App.js</code> and save to reload.
+-                          </p>
+-                      </div>
+-                      <div className="post">
+-                          <p>
+-                              <b>Monitor the impact of your code changes. Measure performance, track errors,</b>
+-                              <br/>and analyze your application.
+-                                   To get started, edit <code>src/App.js</code> and save to reload.
+-                          </p>
+-                      </div><div className="post">
+-                      <p>
+-                          <b>Monitor the impact of your code changes. Measure performance, track errors,</b>
+-                          <br/>and analyze your application.
+-                               To get started, edit <code>src/App.js</code> and save to reload.
+-                      </p>
+-                  </div>
+-
+-
+-                  </div>
++                <switch>
++
++                  <Route path='/:category' component = {PostsList}/>
++                </switch>
+               </div>
+           </div>
+       </div>
+@@ -91,18 +44,22 @@
+   }
+ }
+ 
+-function mapStateToProps(state) {
+-    const { posts} = state
++function mapStateToProps(state,ownProps) {
++    const { categories,posts} = state
+     return {
+-        selectedCategory: posts.selectedCategory,
+-        categories: posts.categories,
+-        posts: posts.posts
+- }
++        selectedCategory: categories.selectedCategory,
++        categories: categories.categories,
++        posts: posts.posts.slice().sort(sortBy("-"+posts.sortColumn))
++    }
+ }
+ 
+ function mapDispatchToProps(dispatch){
+     return{
+-        selectCategory: (data)=> dispatch(selectCategory(data))
++        loadCategories: ()=>dispatch(loadCategories()),
++        loadPosts: () => dispatch(loadPosts()),
++        loadPostsByCategory: (category) => dispatch(loadPostsByCategory(category)),
++        selectCategory: (data)=> dispatch(selectCategory(data)),
++        sortByColumn: (data)=> dispatch(sortByColumn(data))
+     }
+ }
+ 
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\n  \"name\": \"readable\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"dependencies\": {\n    \"react\": \"^15.6.1\",\n    \"react-dom\": \"^15.6.1\",\n    \"react-icons\": \"^2.2.5\",\n    \"redux-logger\": \"^3.0.6\",\n    \"redux-thunk\": \"^2.2.0\"\n  },\n  \"devDependencies\": {\n    \"react-scripts\": \"1.0.11\"\n  },\n  \"scripts\": {\n    \"start\": \"react-scripts start\",\n    \"build\": \"react-scripts build\",\n    \"test\": \"react-scripts test --env=jsdom\",\n    \"eject\": \"react-scripts eject\"\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- package.json	(date 1504506306000)
++++ package.json	(revision )
+@@ -6,8 +6,12 @@
+     "react": "^15.6.1",
+     "react-dom": "^15.6.1",
+     "react-icons": "^2.2.5",
++    "react-redux": "^5.0.6",
++    "react-router-dom": "^4.2.2",
++    "redux": "^3.7.2",
+     "redux-logger": "^3.0.6",
+-    "redux-thunk": "^2.2.0"
++    "redux-thunk": "^2.2.0",
++    "sort-by": "^1.2.0"
+   },
+   "devDependencies": {
+     "react-scripts": "1.0.11"
+Index: src/components/CategoryList.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react'\n\nexport default function CategoryList ({categories,selectedCategory,onSelectCategory}){\n    return categories.length === 0 ?(\n            <p>No Posts</p>\n        ):(\n            <div className=\"categories col-3\">\n                <h3>Categories</h3>\n                <ul>\n                    {categories.map( (cat)=>\n                        <li className={cat===selectedCategory ? 'categories-selected':''}\n                            key={cat.path}>\n                            <a onClick={_=> {onSelectCategory(cat)}}>{cat.name}</a>\n                        </li>\n                    )}\n                </ul>\n            </div>\n        )\n}\n\n\n\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/CategoryList.js	(date 1504506306000)
++++ src/components/CategoryList.js	(revision )
+@@ -1,4 +1,5 @@
+ import React from 'react'
++import {Route,Link} from 'react-router-dom'
+ 
+ export default function CategoryList ({categories,selectedCategory,onSelectCategory}){
+     return categories.length === 0 ?(
+@@ -10,7 +11,7 @@
+                     {categories.map( (cat)=>
+                         <li className={cat===selectedCategory ? 'categories-selected':''}
+                             key={cat.path}>
+-                            <a onClick={_=> {onSelectCategory(cat)}}>{cat.name}</a>
++                            <Link to={cat.path} onClick={_=> {onSelectCategory(cat)}}>{cat.name}</Link>
+                         </li>
+                     )}
+                 </ul>
+Index: src/reducers/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {combineReducers} from 'redux'\nimport  {SELECT_CATEGORY,LOAD_CATS_SUCCESS} from '../actions'\n\n\nfunction posts ( state = initialCategoriesState,action ) {\n    switch(action.type){\n        case LOAD_CATS_SUCCESS:\n            return {\n                ...state,\n                categories: action.categories\n            }\n        case SELECT_CATEGORY:\n            return {\n                ...state,\n                selectedCategory: action.category\n            }\n        default:\n            return state\n    }\n}\n\nconst initialCategoriesState= {\n    selectedCategory: null,\n    categories: [],\n    posts:\n        [\n            {\n                \"id\": \"8xf0y6ziyjabvozdd253nd\",\n                \"timestamp\": 1467166872634,\n                \"title\": \"Udacity is the best place to learn React\",\n                \"body\": \"Everyone says so after all.\",\n                \"author\": \"thingtwo\",\n                \"category\": \"react\",\n                \"voteScore\": 6,\n                \"deleted\": false\n            },\n            {\n                \"id\": \"6ni6ok3ym7mf1p33lnez\",\n                \"timestamp\": 1468479767190,\n                \"title\": \"Learn Redux in 10 minutes!\",\n                \"body\": \"Just kidding. It takes more than 10 minutes to learn technology.\",\n                \"author\": \"thingone\",\n                \"category\": \"redux\",\n                \"voteScore\": -5,\n                \"deleted\": false\n            }\n        ]\n}\n\nexport default combineReducers({posts})
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/reducers/index.js	(date 1504506306000)
++++ src/reducers/index.js	(revision )
+@@ -1,8 +1,9 @@
+ import {combineReducers} from 'redux'
+-import  {SELECT_CATEGORY,LOAD_CATS_SUCCESS} from '../actions'
++import sortBy from 'sort-by'
++import  {SELECT_CATEGORY,LOAD_CATS_SUCCESS,LOAD_POSTS_SUCCESS,SORT_BY_COLUMN} from '../actions'
+ 
+ 
+-function posts ( state = initialCategoriesState,action ) {
++function categories ( state = initialCategoriesState,action ) {
+     switch(action.type){
+         case LOAD_CATS_SUCCESS:
+             return {
+@@ -19,32 +20,32 @@
+     }
+ }
+ 
++function posts ( state = initialPostState,action ) {
++    switch(action.type){
++        case LOAD_POSTS_SUCCESS:
++            return {
++                ...state,
++                posts: action.posts
++            }
++        case SORT_BY_COLUMN:
++            return {
++                ...state,
++                sortColumn: action.columnName,
++            }
++        default:
++            return state
++    }
++}
++
+ const initialCategoriesState= {
+     selectedCategory: null,
+     categories: [],
+-    posts:
+-        [
+-            {
+-                "id": "8xf0y6ziyjabvozdd253nd",
+-                "timestamp": 1467166872634,
+-                "title": "Udacity is the best place to learn React",
+-                "body": "Everyone says so after all.",
+-                "author": "thingtwo",
+-                "category": "react",
+-                "voteScore": 6,
+-                "deleted": false
+-            },
+-            {
+-                "id": "6ni6ok3ym7mf1p33lnez",
+-                "timestamp": 1468479767190,
+-                "title": "Learn Redux in 10 minutes!",
+-                "body": "Just kidding. It takes more than 10 minutes to learn technology.",
+-                "author": "thingone",
+-                "category": "redux",
+-                "voteScore": -5,
+-                "deleted": false
+-            }
+-        ]
++    comments: []
++}
++
++const initialPostState= {
++    posts: [],
++    sortColumn: "voteScore"
+ }
+ 
+-export default combineReducers({posts})
+\ No newline at end of file
++export default combineReducers({categories,posts})
+Index: src/utils/api.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>const api = \"http://localhost:5001\"\n\n// Generate a unique token for storing your bookshelf data on the backend server.\nlet token = localStorage.token\nif (!token)\n    token = localStorage.token = Math.random().toString(36).substr(-8)\n\n\nconst headers = {\n    'Accept': 'application/json',\n    'Authorization': token\n}\n\nexport const fetchCategories = () =>\n    fetch(`${api}/categories`, { headers })\n        .then(res => res.json())\n        .then(data => data.categories)\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/utils/api.js	(date 1504506306000)
++++ src/utils/api.js	(revision )
+@@ -11,8 +11,22 @@
+     'Authorization': token
+ }
+ 
+-export const fetchCategories = () =>
++export const fetchCategories = () => (
+     fetch(`${api}/categories`, { headers })
+         .then(res => res.json())
+         .then(data => data.categories)
++)
+ 
++export function fetchPosts (category) {
++    if (!category){
++     console.log("fetching posts for all")
++     return fetch(`${api}/posts`, { headers })
++        .then(res => res.json())
++        .then(data => data)
++    }else{
++        console.log("fetching posts for ", category)
++        return fetch(`${api}/${category}/posts`, { headers })
++            .then(res => res.json())
++            .then(data => data)
++    }
++}
+\ No newline at end of file
+Index: src/actions/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {fetchCategories} from '../utils/api'\n\nexport const SELECT_CATEGORY = 'SELECT_CATEGORY'\nexport const LOAD_CATS_SUCCESS = 'LOAD_CATS_SUCCESS'\n\nexport function selectCategory(category){\n    console.log(\"this is from the select Category action\",category)\n    return {\n        type: SELECT_CATEGORY,\n        category\n    }\n}\n\nexport function loadCategories() {\n    return (dispatch) => {\n        return fetchCategories().then(cats => {\n            dispatch(loadCategoriesSuccess(cats))\n        }).catch(error=>{\n            throw(error)\n        })\n    }\n}\n\nexport function loadCategoriesSuccess(categories) {\n    return {type: LOAD_CATS_SUCCESS,categories}\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/actions/index.js	(date 1504506306000)
++++ src/actions/index.js	(revision )
+@@ -1,16 +1,31 @@
+-import {fetchCategories} from '../utils/api'
++import {fetchCategories,fetchPosts} from '../utils/api'
+ 
+ export const SELECT_CATEGORY = 'SELECT_CATEGORY'
+ export const LOAD_CATS_SUCCESS = 'LOAD_CATS_SUCCESS'
++export const LOAD_POSTS_SUCCESS= 'LOAD_POSTS_SUCCESS'
++export const SORT_BY_COLUMN = 'SORT_BY_COLUMN'
+ 
+ export function selectCategory(category){
+-    console.log("this is from the select Category action",category)
++    return (dispatch) => {
++        dispatch(setCategory(category))
++
++    }
++}
++
++export function setCategory(category){
+     return {
+         type: SELECT_CATEGORY,
+         category
+     }
+ }
+ 
++export function sortByColumn(columnName){
++    return {
++        type: SORT_BY_COLUMN,
++        columnName
++    }
++}
++
+ export function loadCategories() {
+     return (dispatch) => {
+         return fetchCategories().then(cats => {
+@@ -24,3 +39,27 @@
+ export function loadCategoriesSuccess(categories) {
+     return {type: LOAD_CATS_SUCCESS,categories}
+ }
++
++export function loadPosts() {
++    return (dispatch) => {
++        return fetchPosts().then(cats => {
++            dispatch(loadPostsSuccess(cats))
++        }).catch(error=>{
++            throw(error)
++        })
++    }
++}
++
++export function loadPostsByCategory(category){
++    return (dispatch) => {
++        return fetchPosts(category).then(posts => {
++            dispatch(loadPostsSuccess(posts))
++        }).catch(error=>{
++            throw(error)
++        })
++    }
++}
++
++export function loadPostsSuccess(posts) {
++    return {type: LOAD_POSTS_SUCCESS,posts}
++}
+\ No newline at end of file
