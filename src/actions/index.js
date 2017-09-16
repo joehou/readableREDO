@@ -1,13 +1,14 @@
-import {fetchCategories,fetchPosts,postVote,deleteVote} from '../utils/api'
+import {fetchCategories,fetchPosts,postVote,deleteVote,fetchPost} from '../utils/api'
 
 export const SELECT_CATEGORY = 'SELECT_CATEGORY'
 export const LOAD_CATS_SUCCESS = 'LOAD_CATS_SUCCESS'
 export const LOAD_POSTS_SUCCESS= 'LOAD_POSTS_SUCCESS'
+export const LOAD_POST_SUCCESS= 'LOAD_POST_SUCCESS'
 export const SORT_BY_COLUMN = 'SORT_BY_COLUMN'
 export const UP_VOTE = 'UP_VOTE'
 export const DOWN_VOTE = 'DOWN_VOTE'
 export const DELETE_VOTE = 'DELETE_VOTE'
-
+export const SELECT_POST = 'SELECT_POST'
 
 export function selectCategory(category){
     return (dispatch) => {
@@ -15,12 +16,24 @@ export function selectCategory(category){
 
     }
 }
-
 export function setCategory(category){
     return {
         type: SELECT_CATEGORY,
         category
     }
+}
+
+export function selectPost(post){
+  return dispatch => {
+    dispatch(setPost(post))
+  }
+}
+
+export function setPost(post){
+  return {
+    type: SELECT_POST,
+    post
+  }
 }
 
 export function sortByColumn(columnName){
@@ -42,6 +55,20 @@ export function loadCategories() {
 
 export function loadCategoriesSuccess(categories) {
     return {type: LOAD_CATS_SUCCESS,categories}
+}
+
+export function loadPostSuccess(post){
+  return {type: LOAD_POST_SUCCESS,post}
+}
+
+export function loadPost(post) {
+  return (dispatch) => {
+    return fetchPost(post).then(post => {
+      dispatch(loadPostSuccess(post))
+    }).catch(error=>{
+      throw(error)
+    })
+  }
 }
 
 export function loadPosts() {
@@ -80,7 +107,7 @@ export function upVotePost(post) {
 
 export function downVotePost(post) {
   return (dispatch) => {
-    return postVote(post,'upVote' ).then(post=>{
+    return postVote(post,'downVote' ).then(post=>{
       dispatch(downVoteSuccess(post))
     }).catch(error=>{
       throw(error)

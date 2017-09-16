@@ -17,6 +17,11 @@ time, mark, audio, video {
   border: 0;
   vertical-align: baseline;
 }
+a, a:link, a:visited, a:hover, a:active, a:visited:hover {
+  /* :visited:hover is an old IE bug, not sure if it's still relevant */
+  text-decoration:none;
+  color:inherit;
+}
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -129,9 +134,6 @@ body {
 
 .post{
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,.04);
-  border: 1px solid rgba(0,0,0,.09);
-  border-radius: 3px;
   padding:20px;
   margin-top: 20px;
   display: -webkit-box;
@@ -141,6 +143,21 @@ body {
   display: flex;
   justify-content: flex-start;
   -webkit-flex-flow: row wrap;
+}
+
+.posts .post{
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.09);
+  border-radius: 3px;
+}
+
+/*rearrange contnet for single post*/
+.selected-post .post-header{
+  font-size: xx-large;
+}
+
+.selected-post p{
+  font-size: x-large;
 }
 
 .post-control{
