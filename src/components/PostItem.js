@@ -27,7 +27,7 @@ function PostItem(props){
           </div>
         </div>
         <p>{post.body}</p>
-        <p className="author">Posted by {post.author} at {new Date(post.timestamp).toISOString().slice(0, 10)}</p>
+        <span className="author">Posted by {post.author} at {new Date(post.timestamp).toISOString().slice(0, 10)}</span>
       </div>
     </div>
   )

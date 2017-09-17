@@ -98,9 +98,10 @@ body {
 }
 
 .categories{
-    background: #fafafa!important;
-    border-right:1px #e1e4e8 solid;
+  background: #fafafa!important;
+  border-right:1px #e1e4e8 solid;
   padding:20px;
+  min-height:600px
 }
 
 .categories li a{
@@ -201,7 +202,7 @@ body {
   justify-content: space-between;
   -webkit-flex-flow: row wrap;
   flex-direction: row;
-  width: 100%;
+
 }
 
 .posts-header {
@@ -219,6 +220,28 @@ body {
 .posts-header select{
   margin-left: auto;
 }
+
+.new-post{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  -webkit-flex-flow: row wrap;
+  flex-direction: column;
+}
+
+.new-post select, .new-post input,.new-post textarea {
+  margin-top:5px;
+  margin-bottom:15px;
+}
+
+.new-post label{
+  font-weight:bold;
+  font-size: larger;
+}
+
 
 @media all and (max-width: 800px) {
   .navigation {

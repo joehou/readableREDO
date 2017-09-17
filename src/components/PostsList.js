@@ -11,7 +11,9 @@ class PostList extends Component{
     return(
       <div className="posts col-9">
         <div className="posts-header row">
-          <h2>Posts<NewIcon/></h2>
+          <h2>Posts
+            <Link to='/posts/new'><NewIcon/></Link>
+          </h2>
           <select className="" onChange={event => this.props.sortByColumn(event.target.value)}>
             <option value="voteScore">Vote Score</option>
             <option value="timestamp">Time</option>
