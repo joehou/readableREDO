@@ -5,7 +5,7 @@ class PostNew extends Component{
   render() {
     return (
       <div className="posts col-9">
-        <form className="new-post">
+        <form className="new-post" onChange={event=>console.log(event.target.value)}>
           <div>
             <label>Title:</label><br />
             <input type="text" />

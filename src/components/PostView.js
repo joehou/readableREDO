@@ -13,12 +13,12 @@ class PostView extends Component {
   }
 
   render() {
-    return !this.props.selectedPost?(
+    return !this.props.post ?(
         <div>loading</div>
       )
       :(
         <div className="col-9 selected-post">
-          <PostItem post={this.props.selectedPost}
+          <PostItem post={this.props.post}
                     onDownVotePost={this.props.downVotePost}
                     onUpVotePost={this.props.upVotePost}
                     onSelectPost={this.props.selectPost}
@@ -32,6 +32,7 @@ class PostView extends Component {
 function mapStateToProps(state,ownProps) {
   const { posts } = state
   return {
+    post: posts.posts.filter(post=> post.id===posts.selectedPost)[0],
     selectedPost: posts.selectedPost
   }
 }
