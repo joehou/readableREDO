@@ -7,12 +7,13 @@ import './App.css';
 import sortBy from 'sort-by'
 import CategoryList from './components/CategoryList'
 import PostsList from './components/PostsList'
+import PostView from './components/PostView'
+import PostNew from './components/PostNew'
 
 class App extends Component {
 
   componentDidMount() {
-      this.props.loadCategories();
-      this.props.loadPosts()
+      this.props.loadCategories()
       console.log("app mounting")
   }
 
@@ -33,9 +34,13 @@ class App extends Component {
           </div>
           <div className="grid">
               <div className="main row">
-                  <CategoryList categories={categories} selectedCategory={selectedCategory} onSelectCategory={selectCategory} />
-                  <Route exact path='/' component = {PostsList}/>
-                  <Route path='/:category' component = {PostsList}/>
+                <CategoryList categories={categories} selectedCategory={selectedCategory} onSelectCategory={selectCategory} />
+                <Switch>
+                  <Route exact path='/' component = {PostsList} />
+                  <Route path='/posts/new' component = {PostNew} />
+                  <Route path='/:category/:post' component={PostView} />
+                  <Route path='/:category' component = {PostsList} />
+                </Switch>
          </div>
           </div>
       </div>

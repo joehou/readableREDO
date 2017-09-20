@@ -17,6 +17,12 @@ export const fetchCategories = () => (
         .then(data => data.categories)
 )
 
+export function fetchPost (post) {
+    return fetch(`${api}/posts/${post}`, {headers})
+      .then(res => res.json())
+      .then(post=> post)
+}
+
 export function fetchPosts (category) {
     if (!category){
      console.log("fetching posts for all")

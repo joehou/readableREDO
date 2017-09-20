@@ -11,7 +11,7 @@ export default function CategoryList ({categories,selectedCategory,onSelectCateg
                 {categories.map( (cat)=>
                     <li className={cat===selectedCategory ? 'categories-selected':''}
                         key={cat.path}>
-                        <Link to={cat.path} onClick={_=> {onSelectCategory(cat)}}>{cat.name}</Link>
+                        <Link to={`/${cat.path}`} onClick={_=> {onSelectCategory(cat)}}>{cat.name}</Link>
                     </li>
                 )}
             </ul>

@@ -7,6 +7,11 @@ import NewIcon from 'react-icons/lib/fa/plus-square-o'
 import PostItem from '../components/PostItem'
 
 class PostList extends Component{
+
+  componentDidMount(){
+    this.props.loadPosts()
+  }
+
   render() {
     return(
       <div className="posts col-9">

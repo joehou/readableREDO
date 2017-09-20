@@ -9,6 +9,8 @@ export const UP_VOTE = 'UP_VOTE'
 export const DOWN_VOTE = 'DOWN_VOTE'
 export const DELETE_VOTE = 'DELETE_VOTE'
 export const SELECT_POST = 'SELECT_POST'
+export const UPDATE_EDIT_POST = 'UPDATE_EDIT_POST'
+
 
 export function selectCategory(category){
     return (dispatch) => {
@@ -35,6 +37,17 @@ export function setPost(post){
     post
   }
 }
+
+export function updatePost(update){
+  return dispatch=>{
+    dispatch( {
+        type: UPDATE_EDIT_POST,
+        update
+      }
+    )
+  }
+}
+
 
 export function sortByColumn(columnName){
     return {
