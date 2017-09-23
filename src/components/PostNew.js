@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import SaveIcon from 'react-icons/lib/fa/floppy-o'
-import {updatePost} from '../actions'
+import {updatePost,createPost} from '../actions'
 
 class PostNew extends Component{
 
@@ -16,22 +16,24 @@ class PostNew extends Component{
           </div>
           <div>
             <label>Author:</label><br />
-            <input name="author"  type="text" />
+            <input name="author"  type="text" value={author} />
           </div>
           <div>
             <label>Category:</label><br />
-            <select name="category">
-              <option>React</option>
-              <option>Redux</option>
-              <option>Udacity</option>
+            <select name="category" value={category}>
+              <option value="react">React</option>
+              <option value="redux">Redux</option>
+              <option value="udacity">Udacity</option>
             </select>
           </div>
           <div>
             <label>Body:</label><br />
-            <textarea name="body" className="col-9" rows="10"/>
+            <textarea name="body" className="col-9" rows="10"
+              value={body}
+            />
           </div>
           <div>
-            <button type="submit"><SaveIcon/>Save</button>
+            <button type="submit" onClick={event=>{event.preventDefault();console.log(this.props.currentPost);this.props.onCreatePost(this.props.currentPost)}}><SaveIcon/>Save</button>
           </div>
         </form>
       </div>
@@ -48,7 +50,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return{
-      onUpdatePost: (data) => dispatch(updatePost(data))
+      onUpdatePost: (data) => dispatch(updatePost(data)),
+      onCreatePost: (data) => dispatch(createPost(data))
   }
 }
 

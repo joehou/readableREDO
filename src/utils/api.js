@@ -3,12 +3,13 @@ const api = "http://localhost:5001"
 // Generate a unique token for storing your bookshelf data on the backend server.
 let token = localStorage.token
 if (!token)
-    token = localStorage.token = Math.random().toString(36).substr(-8)
+      token = localStorage.token = Math.random().toString(36).substr(-8)
+console.log('token: ',token)
 
 
 const headers = {
     'Accept': 'application/json',
-    'Authorization': token
+    'Authorization': '8hxvct1p'
 }
 
 export const fetchCategories = () => (
@@ -45,4 +46,13 @@ export function postVote(post,option){
 
 export function deleteVote(post){
   return fetch (`${api}/posts/${post.id}`, {method:'DELETE',headers:{...headers,'Content-Type': 'application/json'}})
+}
+
+export function postEditPost(post){
+  //here we add the missing information?
+  post= {...post,id:Math.random().toString(36).substr(-20),timestamp:Date.now()}
+  console.log(post);
+  return fetch (`${api}/posts/`, {method:'POST',headers:{...headers,'Content-Type': 'application/json'},body:JSON.stringify(post )})
+    .then( res => res.json())
+    .then( post => post)
 }

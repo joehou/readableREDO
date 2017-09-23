@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
 import sortBy from 'sort-by'
-import  {SELECT_CATEGORY,LOAD_CATS_SUCCESS,LOAD_POSTS_SUCCESS,SORT_BY_COLUMN,UP_VOTE,DOWN_VOTE,DELETE_VOTE,SELECT_POST,LOAD_POST_SUCCESS,UPDATE_EDIT_POST} from '../actions'
+import  {SELECT_CATEGORY,LOAD_CATS_SUCCESS,LOAD_POSTS_SUCCESS,SORT_BY_COLUMN,UP_VOTE,DOWN_VOTE,DELETE_VOTE,SELECT_POST,LOAD_POST_SUCCESS,UPDATE_EDIT_POST,CREATE_EDIT_POST} from '../actions'
 
 
 function categories ( state = initialCategoriesState,action ) {
@@ -22,6 +22,16 @@ function categories ( state = initialCategoriesState,action ) {
 
 function posts ( state = initialPostState,action ) {
     switch(action.type){
+      case CREATE_EDIT_POST:
+        return {
+          ...state,
+          editPost: {
+            title: "",
+            author: "",
+            category: "",
+            body: ""
+          }
+        }
       case UPDATE_EDIT_POST:
         console.log( {...state.editPost} )
         return {
@@ -100,8 +110,11 @@ const initialPostState= {
   sortColumn: "voteScore",
   selectedPost: null,
   editPost: {
-
+    title: "",
+    author: "",
+    category: "",
+    body: ""
   }
 }
 
-export default combineReducers({categories,posts})
+export default {categories,posts}

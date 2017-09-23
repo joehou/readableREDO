@@ -1,4 +1,8 @@
-import {fetchCategories,fetchPosts,postVote,deleteVote,fetchPost} from '../utils/api'
+import {fetchCategories,fetchPosts,postVote,deleteVote,fetchPost,postEditPost} from '../utils/api'
+import { push } from 'react-router-redux'
+
+
+
 
 export const SELECT_CATEGORY = 'SELECT_CATEGORY'
 export const LOAD_CATS_SUCCESS = 'LOAD_CATS_SUCCESS'
@@ -10,6 +14,8 @@ export const DOWN_VOTE = 'DOWN_VOTE'
 export const DELETE_VOTE = 'DELETE_VOTE'
 export const SELECT_POST = 'SELECT_POST'
 export const UPDATE_EDIT_POST = 'UPDATE_EDIT_POST'
+export const CREATE_EDIT_POST = 'CREATE_EDIT_POST'
+
 
 
 export function selectCategory(category){
@@ -48,6 +54,24 @@ export function updatePost(update){
   }
 }
 
+export function createPost(post){
+  return (dispatch) =>{
+    return postEditPost( post ).then(post=>{
+      dispatch(CreatePostSuccess(post))})
+      .then(_=>{
+        console.log("dispatchingPush")
+        dispatch(push('/'))
+        }
+      )
+  }
+}
+
+export function CreatePostSuccess(post){
+  return {
+    type: CREATE_EDIT_POST,
+    post
+  }
+}
 
 export function sortByColumn(columnName){
     return {
