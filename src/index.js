@@ -25,7 +25,7 @@ const store = createStore(
     ...reducers,
     router: routerReducer
   }),
-  applyMiddleware(middleware,thunk,logger)
+  composeEnhancers(applyMiddleware(middleware,thunk,logger))
 )
 
 

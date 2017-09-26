@@ -1,48 +1,41 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import SaveIcon from 'react-icons/lib/fa/floppy-o'
-import {updatePost,createPost} from '../actions'
+import {Switch,Route} from 'react-router-dom'
+import {updatePost,createPost,loadEditPost,resetEditPost} from '../actions'
+import PostForm from '../components/PostForm'
 
 class PostNew extends Component{
 
+  componentDidMount(){
+    if  (this.props.match.params.post){
+      this.props.loadSelectedPost(this.props.match.params.post)
+    }else{
+      this.props.resetEditPost()
+    }
+  }
+
   render() {
-    const {title,author,category,body}=this.props.currentPost
-    return (
+    return !this.props.currentPost ?(
+        <div>loading</div>
+      )
+  :(
       <div className="posts col-9">
-        <form className="new-post" onChange={event=>this.props.onUpdatePost({propertyName: event.target.name, value: event.target.value})}>
-          <div>
-            <label>Title:</label><br />
-            <input name="title" type="text" value={title}/>
-          </div>
-          <div>
-            <label>Author:</label><br />
-            <input name="author"  type="text" value={author} />
-          </div>
-          <div>
-            <label>Category:</label><br />
-            <select name="category" value={category}>
-              <option value="react">React</option>
-              <option value="redux">Redux</option>
-              <option value="udacity">Udacity</option>
-            </select>
-          </div>
-          <div>
-            <label>Body:</label><br />
-            <textarea name="body" className="col-9" rows="10"
-              value={body}
-            />
-          </div>
-          <div>
-            <button type="submit" onClick={event=>{event.preventDefault();console.log(this.props.currentPost);this.props.onCreatePost(this.props.currentPost)}}><SaveIcon/>Save</button>
-          </div>
-        </form>
+        <switch>
+          <Route path="/posts/new" render ={_=><div>Creating new</div>} />
+          <Route path="/:post/edit" render ={_=><div>We editing</div>} />
+        </switch>
+        <PostForm currentPost={this.props.currentPost}
+                  onUpdatePost={this.props.onUpdatePost}
+                  onCreatePost={this.props.onCreatePost }
+        />
       </div>
     )
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state,ownProps){
   const{posts} = state
+  console.log(ownProps.match.params.post)
   return{
     currentPost: posts.editPost
   }
@@ -50,8 +43,10 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return{
-      onUpdatePost: (data) => dispatch(updatePost(data)),
-      onCreatePost: (data) => dispatch(createPost(data))
+    loadSelectedPost: (data) => dispatch(loadEditPost(data)),
+    onUpdatePost: (data) => dispatch(updatePost(data)),
+    onCreatePost: (data) => dispatch(createPost(data)),
+    resetEditPost: (data) => dispatch(resetEditPost())
   }
 }
 

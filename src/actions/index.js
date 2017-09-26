@@ -15,8 +15,8 @@ export const DELETE_VOTE = 'DELETE_VOTE'
 export const SELECT_POST = 'SELECT_POST'
 export const UPDATE_EDIT_POST = 'UPDATE_EDIT_POST'
 export const CREATE_EDIT_POST = 'CREATE_EDIT_POST'
-
-
+export const LOAD_EDIT_POST_SUCCESS = 'LOAD_EDIT_POST_SUCCESS'
+export const RESET_EDIT_POST = 'RESET_EDIT_POST'
 
 export function selectCategory(category){
     return (dispatch) => {
@@ -44,6 +44,14 @@ export function setPost(post){
   }
 }
 
+export function resetEditPost(){
+  return dispatch=>
+  dispatch({
+    type: RESET_EDIT_POST
+  })
+}
+
+
 export function updatePost(update){
   return dispatch=>{
     dispatch( {
@@ -56,10 +64,11 @@ export function updatePost(update){
 
 export function createPost(post){
   return (dispatch) =>{
-    return postEditPost( post ).then(post=>{
-      dispatch(CreatePostSuccess(post))})
+    return postEditPost( post )
+      .then(post=>{
+        dispatch(CreatePostSuccess(post))}
+      )
       .then(_=>{
-        console.log("dispatchingPush")
         dispatch(push('/'))
         }
       )
@@ -108,11 +117,26 @@ export function loadPost(post) {
   }
 }
 
+export function loadEditPostSuccess(post){
+  return {type: LOAD_EDIT_POST_SUCCESS,post}
+}
+
+export function loadEditPost(post) {
+  return (dispatch) => {
+    return fetchPost(post).then(post => {
+      dispatch(loadEditPostSuccess(post))
+    }).catch(error=>{
+      throw(error)
+    })
+  }
+}
+
+
 export function loadPosts() {
     return (dispatch) => {
         return fetchPosts().then(posts => {
             dispatch(loadPostsSuccess(posts.filter(post =>post.deleted ===false)))
-        }).catch(error=>{
+         }).catch(error=>{
             throw(error)
         })
     }

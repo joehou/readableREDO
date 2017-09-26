@@ -14,7 +14,6 @@ class App extends Component {
 
   componentDidMount() {
       this.props.loadCategories()
-      console.log("app mounting")
   }
 
     render() {
@@ -38,6 +37,7 @@ class App extends Component {
                 <Switch>
                   <Route exact path='/' component = {PostsList} />
                   <Route path='/posts/new' component = {PostNew} />
+                  <Route path='/:post/edit' component = {PostNew} />
                   <Route path='/:category/:post' component={PostView} />
                   <Route path='/:category' component = {PostsList} />
                 </Switch>
