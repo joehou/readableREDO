@@ -21,9 +21,9 @@ class PostForm extends Component{
             <div>
             <label>Category:</label><br />
             <select name="category" value={category}>
-            <option value="react">React</option>
-            <option value="redux">Redux</option>
-            <option value="udacity">Udacity</option>
+              <option value="react">React</option>
+              <option value="redux">Redux</option>
+              <option value="udacity">Udacity</option>
             </select>
             </div>
           </div>

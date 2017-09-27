@@ -35,22 +35,12 @@ function posts ( state = initialPostState,action ) {
       case CREATE_EDIT_POST:
         return {
           ...state,
-          editPost: {
-            title: "",
-            author: "",
-            category: "",
-            body: ""
-          }
+          editPost: blankPost
         }
       case RESET_EDIT_POST:
         return {
           ...state,
-          editPost: {
-            title: "",
-            author: "",
-            category: "",
-            body: ""
-          }
+          editPost: blankPost
         }
       case UPDATE_EDIT_POST:
         console.log( {...state.editPost} )
@@ -131,16 +121,18 @@ const initialCategoriesState= {
   comments: []
 }
 
+const blankPost={
+  title: "",
+  author: "",
+  category: "",
+  body: ""
+}
+
 const initialPostState= {
   posts: [],
   sortColumn: "voteScore",
   selectedPost: null,
-  editPost: {
-    title: "",
-    author: "",
-    category: "",
-    body: ""
-  }
+  editPost: blankPost
 }
 
 export default {categories,posts}

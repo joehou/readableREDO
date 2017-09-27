@@ -26,7 +26,7 @@ class PostList extends Component{
           </select>
         </div>
         {this.props.posts.map(post=>
-          <PostItem post={post}
+          <PostItem key={post.id} post={post}
                     onDownVotePost={this.props.downVotePost}
                     onUpVotePost={this.props.upVotePost}
                     onSelectPost={this.props.selectPost}

@@ -26,8 +26,8 @@ class App extends Component {
               <h1 className='logo col-3'><FaLeanpub size={30}/> Readable</h1>
               <ul className="navigation col-9">
                 <li><Link to="/">Home</Link></li>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Contact</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
               </ul>
               </div>
           </div>
