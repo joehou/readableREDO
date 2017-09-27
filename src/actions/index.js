@@ -1,4 +1,4 @@
-import {fetchCategories,fetchPosts,postVote,deleteVote,fetchPost,postEditPost} from '../utils/api'
+import {fetchCategories,fetchPosts,postVote,deleteVote,fetchPost,postEditPost,saveEditPost} from '../utils/api'
 import { push } from 'react-router-redux'
 
 
@@ -15,6 +15,7 @@ export const DELETE_VOTE = 'DELETE_VOTE'
 export const SELECT_POST = 'SELECT_POST'
 export const UPDATE_EDIT_POST = 'UPDATE_EDIT_POST'
 export const CREATE_EDIT_POST = 'CREATE_EDIT_POST'
+export const SAVE_EDIT_POST = 'SAVE_EDIT_POST'
 export const LOAD_EDIT_POST_SUCCESS = 'LOAD_EDIT_POST_SUCCESS'
 export const RESET_EDIT_POST = 'RESET_EDIT_POST'
 
@@ -59,6 +60,26 @@ export function updatePost(update){
         update
       }
     )
+  }
+}
+
+export function savePost(post){
+  return (dispatch) =>{
+    return saveEditPost( post )
+      .then(post=>{
+        dispatch(savePostSuccess(post))}
+      )
+      .then(_=>{
+          dispatch(push('/'))
+        }
+      )
+  }
+}
+
+export function savePostSuccess(post){
+  return {
+    type: SAVE_EDIT_POST,
+    post
   }
 }
 

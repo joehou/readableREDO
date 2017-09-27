@@ -12,18 +12,24 @@ class PostForm extends Component{
           <label>Title:</label><br />
           <input name="title" type="text" value={title}/>
         </div>
-        <div>
-          <label>Author:</label><br />
-          <input name="author"  type="text" value={author} />
-        </div>
-        <div>
-          <label>Category:</label><br />
-          <select name="category" value={category}>
+        {this.props.showDetails?
+          <div>
+            <div>
+              <label>Author:</label><br />
+              <input name="author"  type="text" value={author} />
+            </div>
+            <div>
+            <label>Category:</label><br />
+            <select name="category" value={category}>
             <option value="react">React</option>
             <option value="redux">Redux</option>
             <option value="udacity">Udacity</option>
-          </select>
-        </div>
+            </select>
+            </div>
+          </div>
+        :null}
+
+
         <div>
           <label>Body:</label><br />
           <textarea name="body" className="col-9" rows="10"
