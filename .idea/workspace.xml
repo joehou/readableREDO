@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ad185a2d-1130-457a-847a-186950458c5f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/PostForm.js" afterPath="$PROJECT_DIR$/src/components/PostForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/PostsList.js" afterPath="$PROJECT_DIR$/src/components/PostsList.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/index.js" afterPath="$PROJECT_DIR$/src/reducers/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -88,8 +85,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="37" column="29" lean-forward="false" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -554,7 +551,7 @@
       <workItem from="1505000160397" duration="116000" />
       <workItem from="1505853860173" duration="7975000" />
       <workItem from="1505886692675" duration="24000" />
-      <workItem from="1505886971238" duration="67825000" />
+      <workItem from="1505886971238" duration="68214000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add CSS and icon&#10;&#10;Add basic CSS and icons">
       <created>1503287343908</created>
@@ -633,11 +630,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506485630696</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="feat: format and refactor&#10;&#10;format and refactor blank post as const">
+      <created>1506486958905</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1506486958905</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170800000" />
+    <option name="totallyTimeSpent" value="171189000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="98" y="-1440" width="1696" height="1448" extended-state="0" />
@@ -702,7 +706,8 @@
     <MESSAGE value="feat: Router redirect and form reset &#10;&#10;react-router-redux middleware to dispatch redirect in action.  Form reset" />
     <MESSAGE value="feat: Add new post &#10;&#10;Add new post added" />
     <MESSAGE value="feat: Finish edit and create&#10;&#10;Finish Edit and create" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Finish edit and create&#10;&#10;Finish Edit and create" />
+    <MESSAGE value="feat: format and refactor&#10;&#10;format and refactor blank post as const" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: format and refactor&#10;&#10;format and refactor blank post as const" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1154,8 +1159,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="37" column="29" lean-forward="false" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>

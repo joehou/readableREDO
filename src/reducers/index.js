@@ -48,8 +48,8 @@ function posts ( state = initialPostState,action ) {
           ...state,
           editPost: {...state.editPost, [action.update.propertyName]: action.update.value}
         }
-      case LOAD_POST_SUCCESS:  //this should be modified to contain the ID of the selected post
-        return {               //and posts state should be update with the info from the ajax call
+      case LOAD_POST_SUCCESS:
+        return {
           ...state,
           posts: state.posts.length ===0
             ? [action.post] :
@@ -86,10 +86,7 @@ function posts ( state = initialPostState,action ) {
               }else{
                   return post
               }
-          })  // would this change the state of selected post?
-          //, selectedPost: (state.selectedPost && state.selectedPost.id ===action.post.id )?
-          //   {...state.selectedPost,voteScore: state.selectedPost.voteScore+1 }:
-          //   state.selectedPost
+          })
         }
       case DOWN_VOTE:
         return {
@@ -101,9 +98,6 @@ function posts ( state = initialPostState,action ) {
               return post
             }
           })
-          //, selectedPost: (state.selectedPost && state.selectedPost.id) ===action.post.id ?
-          //   {...state.selectedPost,voteScore: state.selectedPost.voteScore-1 }:
-          //   state.selectedPost
         }
       case DELETE_VOTE:
           return {
