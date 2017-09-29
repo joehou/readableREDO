@@ -132,8 +132,12 @@ body {
 .posts{
   padding:20px;
 }
+.comments{
+  padding:40px;
+  font-size: x-small;
+}
 
-.post{
+.post,.comment{
   background: #fff;
   padding:20px;
   margin-top: 20px;
@@ -242,6 +246,11 @@ body {
   font-size: larger;
 }
 
+.comment{
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.09);
+  border-radius: 3px;
+}
 
 @media all and (max-width: 800px) {
   .navigation {

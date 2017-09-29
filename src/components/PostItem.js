@@ -3,7 +3,7 @@ import UpArrow from 'react-icons/lib/fa/angle-up'
 import DownArrow from 'react-icons/lib/fa/angle-down'
 import EditIcon from 'react-icons/lib/fa/edit'
 import TrashIcon from 'react-icons/lib/fa/trash'
-import {withRouter,Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 function PostItem(props){
   let {post} = props

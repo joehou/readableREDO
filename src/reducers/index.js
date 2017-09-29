@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux'
 import sortBy from 'sort-by'
-import  {SELECT_CATEGORY,LOAD_CATS_SUCCESS,LOAD_POSTS_SUCCESS,SORT_BY_COLUMN,UP_VOTE,DOWN_VOTE,DELETE_VOTE,SELECT_POST,LOAD_POST_SUCCESS,UPDATE_EDIT_POST,CREATE_EDIT_POST,LOAD_EDIT_POST_SUCCESS,RESET_EDIT_POST,SAVE_EDIT_POST } from '../actions'
+import  {LOAD_COMMENTS_SUCCESS,SELECT_CATEGORY,LOAD_CATS_SUCCESS,LOAD_POSTS_SUCCESS,SORT_BY_COLUMN,UP_VOTE,
+  DOWN_VOTE,DELETE_VOTE,SELECT_POST,LOAD_POST_SUCCESS,UPDATE_EDIT_POST,CREATE_EDIT_POST,LOAD_EDIT_POST_SUCCESS
+  ,RESET_EDIT_POST,SAVE_EDIT_POST,UP_VOTE_COMMENT ,DOWN_VOTE_COMMENT} from '../actions'
 
 
 function categories ( state = initialCategoriesState,action ) {
@@ -18,6 +20,41 @@ function categories ( state = initialCategoriesState,action ) {
         default:
             return state
     }
+}
+
+function comments ( state = initialCommentsState,action){
+  switch(action.type){
+    case LOAD_COMMENTS_SUCCESS:
+        return {
+          ...state,
+          comments: action.comments
+        }
+    case UP_VOTE_COMMENT:
+        return {
+          ...state,
+          comments: state.comments.map(comment=>{
+            if (comment.id===action.comment.id){
+              return {...comment,voteScore: comment.voteScore+1}
+            }else{
+              return comment
+            }
+          })
+        }
+    case DOWN_VOTE_COMMENT:
+        return {
+          ...state,
+          comments: state.comments.map(comment=>{
+            if (comment.id===action.comment.id){
+              return {...comment,voteScore: comment.voteScore-1}
+            }else{
+              return comment
+            }
+          })
+        }
+    default:
+      return state
+  }
+
 }
 
 function posts ( state = initialPostState,action ) {
@@ -104,8 +141,9 @@ function posts ( state = initialPostState,action ) {
             ...state,
             posts: state.posts.filter( post=>post.id!==action.post.id)
           }
-        default:
+      default:
             return state
+
     }
 }
 
@@ -114,6 +152,11 @@ const initialCategoriesState= {
   categories: [],
   comments: []
 }
+
+const initialCommentsState = {
+  comments: []
+}
+
 
 const blankPost={
   title: "",
@@ -129,4 +172,4 @@ const initialPostState= {
   editPost: blankPost
 }
 
-export default {categories,posts}
+export default {categories,posts,comments}

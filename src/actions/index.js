@@ -1,8 +1,5 @@
-import {fetchCategories,fetchPosts,postVote,deleteVote,fetchPost,postEditPost,saveEditPost} from '../utils/api'
+import {fetchComments,fetchCategories,fetchPosts,postVote,deleteVote,fetchPost,postEditPost,saveEditPost,commentVote} from '../utils/api'
 import { push } from 'react-router-redux'
-
-
-
 
 export const SELECT_CATEGORY = 'SELECT_CATEGORY'
 export const LOAD_CATS_SUCCESS = 'LOAD_CATS_SUCCESS'
@@ -11,6 +8,8 @@ export const LOAD_POST_SUCCESS= 'LOAD_POST_SUCCESS'
 export const SORT_BY_COLUMN = 'SORT_BY_COLUMN'
 export const UP_VOTE = 'UP_VOTE'
 export const DOWN_VOTE = 'DOWN_VOTE'
+export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT'
+export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT'
 export const DELETE_VOTE = 'DELETE_VOTE'
 export const SELECT_POST = 'SELECT_POST'
 export const UPDATE_EDIT_POST = 'UPDATE_EDIT_POST'
@@ -18,6 +17,7 @@ export const CREATE_EDIT_POST = 'CREATE_EDIT_POST'
 export const SAVE_EDIT_POST = 'SAVE_EDIT_POST'
 export const LOAD_EDIT_POST_SUCCESS = 'LOAD_EDIT_POST_SUCCESS'
 export const RESET_EDIT_POST = 'RESET_EDIT_POST'
+export const LOAD_COMMENTS_SUCCESS = 'LOAD_COMMENTS_SUCCESS'
 
 export function selectCategory(category){
     return (dispatch) => {
@@ -152,6 +152,20 @@ export function loadEditPost(post) {
   }
 }
 
+export function loadComments(post) {
+  return (dispatch) => {
+    return fetchComments(post).then(comments=>{
+      dispatch(loadCommentsSuccess(comments))
+    }).catch( error =>{
+      throw(error)
+    })
+  }
+}
+
+export function loadCommentsSuccess(comments){
+  return {type:LOAD_COMMENTS_SUCCESS,comments}
+}
+
 
 export function loadPosts() {
     return (dispatch) => {
@@ -215,4 +229,43 @@ export function deletePost(postToDelete) {
 
 export function deleteVoteSuccess(post){
   return { type: DELETE_VOTE, post}
+}
+
+
+
+
+export function upVoteComment(comment) {
+  return (dispatch) => {
+    return commentVote(comment,'upVote' ).then(comment=>{
+      dispatch(upVoteCommentSuccess(comment))
+    }).catch(error=>{
+      throw(error)
+    })
+  }
+}
+
+export function downVoteComment(comment) {
+  return (dispatch) => {
+    return commentVote(comment,'downVote' ).then(comment=>{
+      dispatch(downVoteCommentSuccess(comment))
+    }).catch(error=>{
+      throw(error)
+    })
+  }
+}
+
+export function upVoteCommentSuccess(comment){
+  return { type: UP_VOTE_COMMENT, comment }
+}
+
+export function downVoteCommentSuccess(comment){
+  return { type: DOWN_VOTE_COMMENT,  comment }
+}
+
+export function deleteComment(commentToDelete) {
+  return (dispatch) => {
+    return deleteVote(commentToDelete).then(_=>{
+      dispatch(deleteVoteSuccess(commentToDelete))
+    }).catch(error=>{throw(error)})
+  }
 }
