@@ -58,8 +58,12 @@ export function postVote(post,option){
     .then( post => post)
 }
 
-export function deleteVote(post){
+export function deletePost(post){
   return fetch (`${api}/posts/${post.id}`, {method:'DELETE',headers:{...headers,'Content-Type': 'application/json'}})
+}
+
+export function deleteComment(comment){
+  return fetch (`${api}/comments/${comment.id}`, {method:'DELETE',headers:{...headers,'Content-Type': 'application/json'}})
 }
 
 export function postEditPost(post){

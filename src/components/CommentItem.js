@@ -24,7 +24,7 @@ class CommentItem extends Component{
         <p>{comment.body}</p>
         <div>
           <span><EditIcon/></span>
-          <span><TrashIcon/></span>
+          <span><TrashIcon onClick={event => onDeleteComment(comment)} /></span>
         </div>
 
         <span className="author">Posted by {comment.author} at {new Date(comment.timestamp).toISOString().slice(0, 10)}</span>

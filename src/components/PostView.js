@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Route,Switch,Link,withRouter} from 'react-router-dom'
-import {loadPost,loadComments,upVotePost,downVotePost,deletePost,upVoteComment,downVoteComment,deleteComment} from '../actions'
+import {loadPost,loadComments,upVotePost,downVotePost,removePost,upVoteComment,downVoteComment,removeComment} from '../actions'
 import PostItem from './PostItem'
 import CommentsList from './CommentsList'
 import sortBy from 'sort-by'
@@ -51,11 +51,11 @@ function mapDispatchToProps(dispatch,ownProps){
     loadPost: (data)=> dispatch(loadPost(data)),
     upVotePost: (data)=> dispatch(upVotePost(data)),
     downVotePost: (data)=> dispatch(downVotePost(data)),
-    deletePost: (data)=> dispatch(deletePost(data)),
+    deletePost: (data)=> dispatch(removePost(data)),
     loadComments: (data)=> dispatch(loadComments(data)),
     upVoteComment: (data)=> dispatch(upVoteComment(data)),
     downVoteComment: (data)=> dispatch(downVoteComment(data)),
-    deleteComment: (data)=> dispatch(deleteComment(data))
+    deleteComment: (data)=> dispatch(removeComment(data))
   }
 }
 

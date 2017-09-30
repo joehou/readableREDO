@@ -9,7 +9,7 @@ class CommentsList extends Component{
         <div>loading</div>
       ):(
       <div className="comments">
-        <h2>Comments: <span><NewIcon/></span></h2>
+        <h2>Comments:({this.props.comments.length}) <span><NewIcon/></span></h2>
         {this.props.comments.map(comment=>
           <CommentItem comment={comment}
                        onDownVoteComment={this.props.onDownVoteComment}

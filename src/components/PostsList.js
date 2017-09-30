@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {loadCategories,loadPosts,loadPostsByCategory,selectCategory,sortByColumn,upVotePost,downVotePost,deletePost,selectPost} from '../actions'
+import {loadCategories,loadPosts,loadPostsByCategory,selectCategory,sortByColumn,upVotePost,downVotePost,removePost,selectPost} from '../actions'
 import sortBy from 'sort-by'
 import {connect} from 'react-redux'
 import {withRouter,Link} from 'react-router-dom'
@@ -53,7 +53,7 @@ function mapDispatchToProps(dispatch){
     sortByColumn: (data)=> dispatch(sortByColumn(data)),
     upVotePost: (data)=> dispatch(upVotePost(data)),
     downVotePost: (data)=> dispatch(downVotePost(data)),
-    deletePost: (data)=> dispatch(deletePost(data)),
+    deletePost: (data)=> dispatch(removePost(data)),
     selectPost: (data)=>  dispatch(selectPost(data))
   }
 }

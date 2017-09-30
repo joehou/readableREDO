@@ -1,4 +1,4 @@
-import {fetchComments,fetchCategories,fetchPosts,postVote,deleteVote,fetchPost,postEditPost,saveEditPost,commentVote} from '../utils/api'
+import {fetchComments,fetchCategories,fetchPosts,postVote,deletePost,fetchPost,postEditPost,saveEditPost,commentVote,deleteComment} from '../utils/api'
 import { push } from 'react-router-redux'
 
 export const SELECT_CATEGORY = 'SELECT_CATEGORY'
@@ -10,7 +10,7 @@ export const UP_VOTE = 'UP_VOTE'
 export const DOWN_VOTE = 'DOWN_VOTE'
 export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT'
 export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT'
-export const DELETE_VOTE = 'DELETE_VOTE'
+export const DELETE_POST = 'DELETE_POST'
 export const SELECT_POST = 'SELECT_POST'
 export const UPDATE_EDIT_POST = 'UPDATE_EDIT_POST'
 export const CREATE_EDIT_POST = 'CREATE_EDIT_POST'
@@ -18,6 +18,7 @@ export const SAVE_EDIT_POST = 'SAVE_EDIT_POST'
 export const LOAD_EDIT_POST_SUCCESS = 'LOAD_EDIT_POST_SUCCESS'
 export const RESET_EDIT_POST = 'RESET_EDIT_POST'
 export const LOAD_COMMENTS_SUCCESS = 'LOAD_COMMENTS_SUCCESS'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 export function selectCategory(category){
     return (dispatch) => {
@@ -219,16 +220,16 @@ export function downVoteSuccess(post){
   return { type: DOWN_VOTE,  post }
 }
 
-export function deletePost(postToDelete) {
+export function removePost(postToDelete) {
     return (dispatch) => {
-        return deleteVote(postToDelete).then(_=>{
-            dispatch(deleteVoteSuccess(postToDelete))
+        return deletePost(postToDelete).then(_=>{
+            dispatch(removePostSuccess(postToDelete))
         }).catch(error=>{throw(error)})
     }
 }
 
-export function deleteVoteSuccess(post){
-  return { type: DELETE_VOTE, post}
+export function removePostSuccess(post){
+  return { type: DELETE_POST, post}
 }
 
 
@@ -262,10 +263,14 @@ export function downVoteCommentSuccess(comment){
   return { type: DOWN_VOTE_COMMENT,  comment }
 }
 
-export function deleteComment(commentToDelete) {
+export function removeComment(commentToDelete) {
   return (dispatch) => {
-    return deleteVote(commentToDelete).then(_=>{
-      dispatch(deleteVoteSuccess(commentToDelete))
+    return deleteComment(commentToDelete).then(_=>{
+      dispatch(removeCommentSuccess(commentToDelete))
     }).catch(error=>{throw(error)})
   }
+}
+
+export function removeCommentSuccess(comment){
+  return {type: DELETE_COMMENT, comment}
 }

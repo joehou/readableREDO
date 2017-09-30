@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux'
 import sortBy from 'sort-by'
 import  {LOAD_COMMENTS_SUCCESS,SELECT_CATEGORY,LOAD_CATS_SUCCESS,LOAD_POSTS_SUCCESS,SORT_BY_COLUMN,UP_VOTE,
-  DOWN_VOTE,DELETE_VOTE,SELECT_POST,LOAD_POST_SUCCESS,UPDATE_EDIT_POST,CREATE_EDIT_POST,LOAD_EDIT_POST_SUCCESS
-  ,RESET_EDIT_POST,SAVE_EDIT_POST,UP_VOTE_COMMENT ,DOWN_VOTE_COMMENT} from '../actions'
+  DOWN_VOTE,DELETE_POST,SELECT_POST,LOAD_POST_SUCCESS,UPDATE_EDIT_POST,CREATE_EDIT_POST,LOAD_EDIT_POST_SUCCESS
+  ,RESET_EDIT_POST,SAVE_EDIT_POST,UP_VOTE_COMMENT ,DOWN_VOTE_COMMENT,DELETE_COMMENT} from '../actions'
 
 
 function categories ( state = initialCategoriesState,action ) {
@@ -51,6 +51,11 @@ function comments ( state = initialCommentsState,action){
             }
           })
         }
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        comments: state.comments.filter( comment=>comment.id!==action.comment.id)
+      }
     default:
       return state
   }
@@ -136,7 +141,7 @@ function posts ( state = initialPostState,action ) {
             }
           })
         }
-      case DELETE_VOTE:
+      case DELETE_POST:
           return {
             ...state,
             posts: state.posts.filter( post=>post.id!==action.post.id)
