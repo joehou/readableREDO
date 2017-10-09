@@ -67,7 +67,6 @@ export function deleteComment(comment){
 }
 
 export function postEditPost(post){
-  /*here we add the missing information?*/
   post= {...post,id:Math.random().toString(36).substr(-20),timestamp:Date.now()}
   return fetch (`${api}/posts/`, {method:'POST',headers:{...headers,'Content-Type': 'application/json'},body:JSON.stringify(post )})
     .then( res => res.json())
@@ -76,9 +75,21 @@ export function postEditPost(post){
 
 
 export function saveEditPost(post){
-  /*here we add the missing information?*/
-  post= {...post}
   return fetch (`${api}/posts/${post.id}`, {method:'PUT',headers:{...headers,'Content-Type': 'application/json'},body:JSON.stringify(post )})
+    .then( res => res.json())
+    .then( post => post)
+}
+
+
+export function postEditComment(comment){
+  comment= {...comment,id:Math.random().toString(36).substr(-20),timestamp:Date.now()}
+  return fetch (`${api}/comments/`, {method:'POST',headers:{...headers,'Content-Type': 'application/json'},body:JSON.stringify(comment )})
+    .then( res => res.json())
+    .then( comment => comment)
+}
+
+export function saveEditComment(comment){
+  return fetch (`${api}/comments/${comment.id}`, {method:'PUT',headers:{...headers,'Content-Type': 'application/json'},body:JSON.stringify(comment )})
     .then( res => res.json())
     .then( post => post)
 }

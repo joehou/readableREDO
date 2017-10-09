@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 class CommentItem extends Component{
   render() {
     let {comment} = this.props
-    let {onDownVoteComment,onUpVoteComment,onDeleteComment} =this.props
+    let {onDownVoteComment,onUpVoteComment,onDeleteComment,onOpenEditCommentModal} =this.props
     return (
       <div className="comment">
         <div className="post-control col-1">
@@ -23,7 +23,7 @@ class CommentItem extends Component{
 
         <p>{comment.body}</p>
         <div>
-          <span><EditIcon/></span>
+          <span><EditIcon onClick={ event => onOpenEditCommentModal(comment) }/></span>
           <span><TrashIcon onClick={event => onDeleteComment(comment)} /></span>
         </div>
 

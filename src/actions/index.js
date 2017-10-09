@@ -1,4 +1,4 @@
-import {fetchComments,fetchCategories,fetchPosts,postVote,deletePost,fetchPost,postEditPost,saveEditPost,commentVote,deleteComment} from '../utils/api'
+import {fetchComments,fetchCategories,fetchPosts,postVote,deletePost,fetchPost,postEditPost,saveEditPost,commentVote,deleteComment,postEditComment,saveEditComment} from '../utils/api'
 import { push } from 'react-router-redux'
 
 export const SELECT_CATEGORY = 'SELECT_CATEGORY'
@@ -19,6 +19,12 @@ export const LOAD_EDIT_POST_SUCCESS = 'LOAD_EDIT_POST_SUCCESS'
 export const RESET_EDIT_POST = 'RESET_EDIT_POST'
 export const LOAD_COMMENTS_SUCCESS = 'LOAD_COMMENTS_SUCCESS'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const OPEN_CREATE_COMMENT_MODAL ='OPEN_CREATE_COMMENT_MODAL'
+export const OPEN_EDIT_COMMENT_MODAL = 'OPEN_EDIT_COMMENT_MODAL'
+export const UPDATE_EDIT_COMMENT = 'UPDATE_EDIT_COMMENT'
+export const CREATE_EDIT_COMMENT = "CREATE_EDIT_COMMENT"
+export const RESET_EDIT_COMMENT = "RESET_EDIT_COMMENT"
+export const SAVE_EDIT_COMMENT = "SAVE_EDIT_COMMENT"
 
 export function selectCategory(category){
     return (dispatch) => {
@@ -273,4 +279,70 @@ export function removeComment(commentToDelete) {
 
 export function removeCommentSuccess(comment){
   return {type: DELETE_COMMENT, comment}
+}
+
+
+export function openCreateCommentModal(){
+  return dispatch=>
+    dispatch({
+      type:  OPEN_CREATE_COMMENT_MODAL
+    })
+}
+
+export function openEditCommentModal(comment){
+  return dispatch=>
+    dispatch({
+      type:  OPEN_EDIT_COMMENT_MODAL,
+      comment
+    })
+}
+
+export function updateComment(update){
+  return dispatch=>{
+    dispatch( {
+        type: UPDATE_EDIT_COMMENT,
+        update
+      }
+    )
+  }
+}
+
+
+export function createComment(comment){
+  comment.comment={...comment.comment, parentId: comment.post}
+  return (dispatch) =>{
+    if (comment.comment.id===""){
+      return postEditComment( comment.comment)
+        .then(comment=>{
+          dispatch(createCommentSuccess(comment))}
+        )
+    }else{
+      console.log("this is an edit")
+      return saveEditComment( comment.comment)
+        .then(comment=>{
+          dispatch(saveCommentSuccess(comment))}
+        )
+    }
+  }
+}
+
+export function createCommentSuccess(comment){
+  return {
+    type: CREATE_EDIT_COMMENT,
+    comment
+  }
+}
+
+export function saveCommentSuccess(comment){
+  return {
+    type: SAVE_EDIT_COMMENT,
+    comment
+  }
+}
+
+export function resetEditComment(){
+  return dispatch=>
+    dispatch({
+      type: RESET_EDIT_COMMENT
+    })
 }

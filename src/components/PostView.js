@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Route,Switch,Link,withRouter} from 'react-router-dom'
-import {loadPost,loadComments,upVotePost,downVotePost,removePost,upVoteComment,downVoteComment,removeComment} from '../actions'
+import {loadPost,loadComments,upVotePost,downVotePost,removePost,upVoteComment,downVoteComment,removeComment,openCreateCommentModal,updatePost,updateComment,createComment,resetEditComment,openEditCommentModal} from '../actions'
 import PostItem from './PostItem'
 import CommentsList from './CommentsList'
+import CommentModal from './CommentModal.js'
 import sortBy from 'sort-by'
+import Modal from 'react-modal'
 
 
 class PostView extends Component {
@@ -20,17 +22,27 @@ class PostView extends Component {
         <div>loading</div>
       )
       :(
-        <div className="col-9 selected-post">
+         <div className="col-9 selected-post">
           <PostItem post={this.props.post}
-                    onDownVotePost={this.props.downVotePost}
-                    onUpVotePost={this.props.upVotePost}
-                    onSelectPost={this.props.selectPost}
-                    onDeletePost={this.props.deletePost}
+            onDownVotePost={this.props.downVotePost}
+            onUpVotePost={this.props.upVotePost}
+            onSelectPost={this.props.selectPost}
+            onDeletePost={this.props.deletePost}
           />
           <CommentsList comments={this.props.comments}
-                        onDownVoteComment={this.props.downVoteComment}
-                        onUpVoteComment={this.props.upVoteComment}
-                        onDeleteComment={this.props.deleteComment}
+            onDownVoteComment={this.props.downVoteComment}
+            onUpVoteComment={this.props.upVoteComment}
+            onDeleteComment={this.props.deleteComment}
+            onOpenCreateCommentModal={this.props.openCreateCommentModal}
+            onOpenEditCommentModal={this.props.openEditCommentModal}
+          />
+          <CommentModal
+            commentsModalOpen = {this.props.commentsModalOpen}
+            onUpdateComment = {this.props.onUpdateComment}
+            resetEditComment = {this.props.resetEditComment}
+            onCreateComment = {this.props.onCreateComment}
+            currentComment = {this.props.currentComment}
+            selectedPost={this.props.selectedPost}
           />
         </div>
       )
@@ -42,7 +54,9 @@ function mapStateToProps(state,ownProps) {
   return {
     post: posts.posts.filter(post=> post.id===posts.selectedPost)[0],
     selectedPost: posts.selectedPost,
-    comments: comments.comments.sort(sortBy("-"+posts.sortColumn))
+    comments: comments.comments.sort(sortBy("-"+posts.sortColumn)),
+    commentsModalOpen: comments.commentsModalOpen,
+    currentComment: comments.editComment
   }
 }
 
@@ -55,7 +69,12 @@ function mapDispatchToProps(dispatch,ownProps){
     loadComments: (data)=> dispatch(loadComments(data)),
     upVoteComment: (data)=> dispatch(upVoteComment(data)),
     downVoteComment: (data)=> dispatch(downVoteComment(data)),
-    deleteComment: (data)=> dispatch(removeComment(data))
+    deleteComment: (data)=> dispatch(removeComment(data)),
+    openCreateCommentModal: (data) => dispatch(openCreateCommentModal(data)),
+    openEditCommentModal: (data) => dispatch(openEditCommentModal(data)),
+    onUpdateComment: (data) => dispatch(updateComment(data)),
+    onCreateComment: (data) => dispatch(createComment(data)),
+    resetEditComment: (data) =>dispatch(resetEditComment(data))
   }
 }
 
