@@ -1,30 +1,6 @@
 import {fetchComments,fetchCategories,fetchPosts,postVote,deletePost,fetchPost,postEditPost,saveEditPost,commentVote,deleteComment,postEditComment,saveEditComment} from '../utils/api'
 import { push } from 'react-router-redux'
-
-export const SELECT_CATEGORY = 'SELECT_CATEGORY'
-export const LOAD_CATS_SUCCESS = 'LOAD_CATS_SUCCESS'
-export const LOAD_POSTS_SUCCESS= 'LOAD_POSTS_SUCCESS'
-export const LOAD_POST_SUCCESS= 'LOAD_POST_SUCCESS'
-export const SORT_BY_COLUMN = 'SORT_BY_COLUMN'
-export const UP_VOTE = 'UP_VOTE'
-export const DOWN_VOTE = 'DOWN_VOTE'
-export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT'
-export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT'
-export const DELETE_POST = 'DELETE_POST'
-export const SELECT_POST = 'SELECT_POST'
-export const UPDATE_EDIT_POST = 'UPDATE_EDIT_POST'
-export const CREATE_EDIT_POST = 'CREATE_EDIT_POST'
-export const SAVE_EDIT_POST = 'SAVE_EDIT_POST'
-export const LOAD_EDIT_POST_SUCCESS = 'LOAD_EDIT_POST_SUCCESS'
-export const RESET_EDIT_POST = 'RESET_EDIT_POST'
-export const LOAD_COMMENTS_SUCCESS = 'LOAD_COMMENTS_SUCCESS'
-export const DELETE_COMMENT = 'DELETE_COMMENT'
-export const OPEN_CREATE_COMMENT_MODAL ='OPEN_CREATE_COMMENT_MODAL'
-export const OPEN_EDIT_COMMENT_MODAL = 'OPEN_EDIT_COMMENT_MODAL'
-export const UPDATE_EDIT_COMMENT = 'UPDATE_EDIT_COMMENT'
-export const CREATE_EDIT_COMMENT = "CREATE_EDIT_COMMENT"
-export const RESET_EDIT_COMMENT = "RESET_EDIT_COMMENT"
-export const SAVE_EDIT_COMMENT = "SAVE_EDIT_COMMENT"
+import * as types from './types'
 
 export function selectCategory(category){
     return (dispatch) => {
@@ -34,7 +10,7 @@ export function selectCategory(category){
 }
 export function setCategory(category){
     return {
-        type: SELECT_CATEGORY,
+        type: types.SELECT_CATEGORY,
         category
     }
 }
@@ -47,7 +23,7 @@ export function selectPost(post){
 
 export function setPost(post){
   return {
-    type: SELECT_POST,
+    type: types.SELECT_POST,
     post
   }
 }
@@ -55,7 +31,7 @@ export function setPost(post){
 export function resetEditPost(){
   return dispatch=>
   dispatch({
-    type: RESET_EDIT_POST
+    type: types.RESET_EDIT_POST
   })
 }
 
@@ -63,7 +39,7 @@ export function resetEditPost(){
 export function updatePost(update){
   return dispatch=>{
     dispatch( {
-        type: UPDATE_EDIT_POST,
+        type: types.UPDATE_EDIT_POST,
         update
       }
     )
@@ -85,7 +61,7 @@ export function savePost(post){
 
 export function savePostSuccess(post){
   return {
-    type: SAVE_EDIT_POST,
+    type: types.SAVE_EDIT_POST,
     post
   }
 }
@@ -105,14 +81,14 @@ export function createPost(post){
 
 export function CreatePostSuccess(post){
   return {
-    type: CREATE_EDIT_POST,
+    type: types.CREATE_EDIT_POST,
     post
   }
 }
 
 export function sortByColumn(columnName){
     return {
-        type: SORT_BY_COLUMN,
+        type: types.SORT_BY_COLUMN,
         columnName
     }
 }
@@ -128,11 +104,11 @@ export function loadCategories() {
 }
 
 export function loadCategoriesSuccess(categories) {
-    return {type: LOAD_CATS_SUCCESS,categories}
+    return {type: types.LOAD_CATS_SUCCESS,categories}
 }
 
 export function loadPostSuccess(post){
-  return {type: LOAD_POST_SUCCESS,post}
+  return {type: types.LOAD_POST_SUCCESS,post}
 }
 
 export function loadPost(post) {
@@ -146,7 +122,7 @@ export function loadPost(post) {
 }
 
 export function loadEditPostSuccess(post){
-  return {type: LOAD_EDIT_POST_SUCCESS,post}
+  return {type: types.LOAD_EDIT_POST_SUCCESS,post}
 }
 
 export function loadEditPost(post) {
@@ -170,7 +146,7 @@ export function loadComments(post) {
 }
 
 export function loadCommentsSuccess(comments){
-  return {type:LOAD_COMMENTS_SUCCESS,comments}
+  return {type: types.LOAD_COMMENTS_SUCCESS,comments}
 }
 
 
@@ -195,7 +171,7 @@ export function loadPostsByCategory(category){
 }
 
 export function loadPostsSuccess(posts) {
-    return {type: LOAD_POSTS_SUCCESS,posts}
+    return {type: types.LOAD_POSTS_SUCCESS,posts}
 }
 
 export function upVotePost(post) {
@@ -219,11 +195,11 @@ export function downVotePost(post) {
 }
 
 export function upVoteSuccess(post){
-  return { type: UP_VOTE, post }
+  return { type: types.UP_VOTE, post }
 }
 
 export function downVoteSuccess(post){
-  return { type: DOWN_VOTE,  post }
+  return { type: types.DOWN_VOTE,  post }
 }
 
 export function removePost(postToDelete) {
@@ -235,7 +211,7 @@ export function removePost(postToDelete) {
 }
 
 export function removePostSuccess(post){
-  return { type: DELETE_POST, post}
+  return { type: types.DELETE_POST, post}
 }
 
 
@@ -262,11 +238,11 @@ export function downVoteComment(comment) {
 }
 
 export function upVoteCommentSuccess(comment){
-  return { type: UP_VOTE_COMMENT, comment }
+  return { type: types.UP_VOTE_COMMENT, comment }
 }
 
 export function downVoteCommentSuccess(comment){
-  return { type: DOWN_VOTE_COMMENT,  comment }
+  return { type: types.DOWN_VOTE_COMMENT,  comment }
 }
 
 export function removeComment(commentToDelete) {
@@ -278,21 +254,21 @@ export function removeComment(commentToDelete) {
 }
 
 export function removeCommentSuccess(comment){
-  return {type: DELETE_COMMENT, comment}
+  return {type: types.DELETE_COMMENT, comment}
 }
 
 
 export function openCreateCommentModal(){
   return dispatch=>
     dispatch({
-      type:  OPEN_CREATE_COMMENT_MODAL
+      type:  types.OPEN_CREATE_COMMENT_MODAL
     })
 }
 
 export function openEditCommentModal(comment){
   return dispatch=>
     dispatch({
-      type:  OPEN_EDIT_COMMENT_MODAL,
+      type:  types.OPEN_EDIT_COMMENT_MODAL,
       comment
     })
 }
@@ -300,7 +276,7 @@ export function openEditCommentModal(comment){
 export function updateComment(update){
   return dispatch=>{
     dispatch( {
-        type: UPDATE_EDIT_COMMENT,
+        type: types.UPDATE_EDIT_COMMENT,
         update
       }
     )
@@ -328,14 +304,14 @@ export function createComment(comment){
 
 export function createCommentSuccess(comment){
   return {
-    type: CREATE_EDIT_COMMENT,
+    type: types.CREATE_EDIT_COMMENT,
     comment
   }
 }
 
 export function saveCommentSuccess(comment){
   return {
-    type: SAVE_EDIT_COMMENT,
+    type: types.SAVE_EDIT_COMMENT,
     comment
   }
 }
@@ -343,6 +319,6 @@ export function saveCommentSuccess(comment){
 export function resetEditComment(){
   return dispatch=>
     dispatch({
-      type: RESET_EDIT_COMMENT
+      type: types.RESET_EDIT_COMMENT
     })
 }

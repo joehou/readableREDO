@@ -12,7 +12,6 @@ import Modal from 'react-modal'
 class PostView extends Component {
 
   componentDidMount() {
-    console.log("this is from mount")
     this.props.loadPost(this.props.match.params.post)
     this.props.loadComments(this.props.match.params.post)
   }

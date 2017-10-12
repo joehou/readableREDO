@@ -1,20 +1,16 @@
 import {combineReducers} from 'redux'
 import sortBy from 'sort-by'
-import  {LOAD_COMMENTS_SUCCESS,SELECT_CATEGORY,LOAD_CATS_SUCCESS,LOAD_POSTS_SUCCESS,SORT_BY_COLUMN,UP_VOTE,
-  DOWN_VOTE,DELETE_POST,SELECT_POST,LOAD_POST_SUCCESS,UPDATE_EDIT_POST,CREATE_EDIT_POST,LOAD_EDIT_POST_SUCCESS
-  ,RESET_EDIT_POST,SAVE_EDIT_POST,UP_VOTE_COMMENT ,DOWN_VOTE_COMMENT,DELETE_COMMENT,OPEN_CREATE_COMMENT_MODAL,
-  UPDATE_EDIT_COMMENT,CREATE_EDIT_COMMENT,RESET_EDIT_COMMENT,OPEN_EDIT_COMMENT_MODAL,SAVE_EDIT_COMMENT
-} from '../actions'
+import * as types from '../actions/types'
 
 
 function categories ( state = initialCategoriesState,action ) {
     switch(action.type){
-        case LOAD_CATS_SUCCESS:
+        case types.LOAD_CATS_SUCCESS:
             return {
                 ...state,
                 categories: action.categories
             }
-        case SELECT_CATEGORY:
+        case types.SELECT_CATEGORY:
             return {
                 ...state,
                 selectedCategory: action.category
@@ -26,29 +22,29 @@ function categories ( state = initialCategoriesState,action ) {
 
 function comments ( state = initialCommentsState,action){
   switch(action.type){
-    case OPEN_CREATE_COMMENT_MODAL:
+    case types.OPEN_CREATE_COMMENT_MODAL:
       return {
         ...state,
         commentsModalOpen:true
       }
-    case OPEN_EDIT_COMMENT_MODAL:
+    case types.OPEN_EDIT_COMMENT_MODAL:
       return {
         ...state,
         commentsModalOpen:true,
         selectedComment: action.comment.id,
         editComment: state.comments.filter(comment=> comment.id===action.comment.id)[0]
       }
-    case UPDATE_EDIT_COMMENT:
+    case types.UPDATE_EDIT_COMMENT:
       return {
         ...state,
         editComment: {...state.editComment, [action.update.propertyName]: action.update.value}
       }
-    case LOAD_COMMENTS_SUCCESS:
+    case types.LOAD_COMMENTS_SUCCESS:
         return {
           ...state,
           comments: action.comments
         }
-    case UP_VOTE_COMMENT:
+    case types.UP_VOTE_COMMENT:
         return {
           ...state,
           comments: state.comments.map(comment=>{
@@ -59,7 +55,7 @@ function comments ( state = initialCommentsState,action){
             }
           })
         }
-    case DOWN_VOTE_COMMENT:
+    case types.DOWN_VOTE_COMMENT:
         return {
           ...state,
           comments: state.comments.map(comment=>{
@@ -70,24 +66,24 @@ function comments ( state = initialCommentsState,action){
             }
           })
         }
-    case DELETE_COMMENT:
+    case types.DELETE_COMMENT:
       return {
         ...state,
         comments: state.comments.filter( comment=>comment.id!==action.comment.id)
       }
-    case CREATE_EDIT_COMMENT:
+    case types.CREATE_EDIT_COMMENT:
       return {
         ...state,
         commentsModalOpen: false,
         comments: [...state.comments,action.comment]
       }
-    case RESET_EDIT_COMMENT:
+    case types.RESET_EDIT_COMMENT:
       return {
         ...state,
         editComment: blankComment,
         commentsModalOpen: false
       }
-    case SAVE_EDIT_COMMENT:
+    case types.SAVE_EDIT_COMMENT:
       return{
         ...state,
         commentsModalOpen: false,
@@ -108,7 +104,7 @@ function comments ( state = initialCommentsState,action){
 
 function posts ( state = initialPostState,action ) {
     switch(action.type){
-      case CREATE_EDIT_POST:
+      case types.CREATE_EDIT_POST:
         return {
           ...state,
           editPost: {
@@ -118,23 +114,23 @@ function posts ( state = initialPostState,action ) {
             body: ""
           }
         }
-      case CREATE_EDIT_POST:
+      case types.CREATE_EDIT_POST:
         return {
           ...state,
           editPost: blankPost
         }
-      case RESET_EDIT_POST:
+      case types.RESET_EDIT_POST:
         return {
           ...state,
           editPost: blankPost
         }
-      case UPDATE_EDIT_POST:
+      case types.UPDATE_EDIT_POST:
         console.log( {...state.editPost} )
         return {
           ...state,
           editPost: {...state.editPost, [action.update.propertyName]: action.update.value}
         }
-      case LOAD_POST_SUCCESS:
+      case types.LOAD_POST_SUCCESS:
         return {
           ...state,
           posts: state.posts.length ===0
@@ -148,22 +144,22 @@ function posts ( state = initialPostState,action ) {
           }),
           selectedPost: action.post.id
         }
-      case LOAD_EDIT_POST_SUCCESS:
+      case types.LOAD_EDIT_POST_SUCCESS:
         return {
           ...state,
           editPost: action.post
         }
-      case LOAD_POSTS_SUCCESS:
+      case types.LOAD_POSTS_SUCCESS:
         return {
             ...state,
             posts: action.posts
         }
-      case SORT_BY_COLUMN:
+      case types.SORT_BY_COLUMN:
         return {
             ...state,
             sortColumn: action.columnName,
         }
-      case UP_VOTE:
+      case types.UP_VOTE:
         return {
           ...state,
           posts: state.posts.map(post=>{
@@ -174,7 +170,7 @@ function posts ( state = initialPostState,action ) {
               }
           })
         }
-      case DOWN_VOTE:
+      case types.DOWN_VOTE:
         return {
           ...state,
           posts: state.posts.map(post=>{
@@ -185,7 +181,7 @@ function posts ( state = initialPostState,action ) {
             }
           })
         }
-      case DELETE_POST:
+      case types.DELETE_POST:
           return {
             ...state,
             posts: state.posts.filter( post=>post.id!==action.post.id)
