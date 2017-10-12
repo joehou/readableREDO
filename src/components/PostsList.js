@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {loadCategories,loadPosts,loadPostsByCategory,selectCategory,sortByColumn,upVotePost,downVotePost,removePost,selectPost} from '../actions'
+import * as actions from '../actions'
 import sortBy from 'sort-by'
 import {connect} from 'react-redux'
 import {withRouter,Link} from 'react-router-dom'
@@ -39,23 +39,12 @@ class PostList extends Component{
 
 }
 
-function mapStateToProps(state,ownProps) {
-  const { posts} = state
+function mapStateToProps({posts},ownProps) {
   return {
     posts: posts.posts.filter(post=>!ownProps.match.params.category || post.category===ownProps.match.params.category).sort(sortBy("-"+posts.sortColumn))
   }
 }
 
-function mapDispatchToProps(dispatch){
-  return{
-    loadPosts: () => dispatch(loadPosts()),
-    loadPostsByCategory: (category) => dispatch(loadPostsByCategory(category)),
-    sortByColumn: (data)=> dispatch(sortByColumn(data)),
-    upVotePost: (data)=> dispatch(upVotePost(data)),
-    downVotePost: (data)=> dispatch(downVotePost(data)),
-    deletePost: (data)=> dispatch(removePost(data)),
-    selectPost: (data)=>  dispatch(selectPost(data))
-  }
-}
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(PostList))
+
+export default withRouter(connect(mapStateToProps,actions)(PostList))

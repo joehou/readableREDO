@@ -24,8 +24,7 @@ class Main extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { posts} = state
+function mapStateToProps({posts}) {
   return {
     selectedCategory: posts.selectedCategory,
     categories: posts.categories,

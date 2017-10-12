@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Route, Switch,Link,withRouter} from 'react-router-dom'
-import {loadCategories,loadPosts,loadPostsByCategory,selectCategory,sortByColumn} from './actions'
+import * as actions from './actions'
 import FaLeanpub from 'react-icons/lib/fa/leanpub'
 import './App.css';
 import sortBy from 'sort-by'
@@ -48,8 +48,8 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state,ownProps) {
-    const { categories,posts} = state
+function mapStateToProps({categories,posts}) {
+
     return {
         selectedCategory: categories.selectedCategory,
         categories: categories.categories,
@@ -57,14 +57,4 @@ function mapStateToProps(state,ownProps) {
     }
 }
 
-function mapDispatchToProps(dispatch){
-    return{
-        loadCategories: ()=>dispatch(loadCategories()),
-        loadPosts: () => dispatch(loadPosts()),
-        loadPostsByCategory: (category) => dispatch(loadPostsByCategory(category)),
-        selectCategory: (data)=> dispatch(selectCategory(data)),
-        sortByColumn: (data)=> dispatch(sortByColumn(data))
-    }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default withRouter(connect(mapStateToProps, actions)(App))

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Route,Switch,Link,withRouter} from 'react-router-dom'
-import {loadPost,loadComments,upVotePost,downVotePost,removePost,upVoteComment,downVoteComment,removeComment,openCreateCommentModal,updatePost,updateComment,createComment,resetEditComment,openEditCommentModal} from '../actions'
+import * as actions from '../actions'
 import PostItem from './PostItem'
 import CommentsList from './CommentsList'
 import CommentModal from './CommentModal.js'
@@ -32,15 +32,15 @@ class PostView extends Component {
           <CommentsList comments={this.props.comments}
             onDownVoteComment={this.props.downVoteComment}
             onUpVoteComment={this.props.upVoteComment}
-            onDeleteComment={this.props.deleteComment}
+            onDeleteComment={this.props.removeComment}
             onOpenCreateCommentModal={this.props.openCreateCommentModal}
             onOpenEditCommentModal={this.props.openEditCommentModal}
           />
           <CommentModal
             commentsModalOpen = {this.props.commentsModalOpen}
-            onUpdateComment = {this.props.onUpdateComment}
+            onUpdateComment = {this.props.updateComment}
             resetEditComment = {this.props.resetEditComment}
-            onCreateComment = {this.props.onCreateComment}
+            onCreateComment = {this.props.createComment}
             currentComment = {this.props.currentComment}
             selectedPost={this.props.selectedPost}
           />
@@ -49,8 +49,7 @@ class PostView extends Component {
   }
 }
 
-function mapStateToProps(state,ownProps) {
-  const { posts,comments } = state
+function mapStateToProps({posts,comments}) {
   return {
     post: posts.posts.filter(post=> post.id===posts.selectedPost)[0],
     selectedPost: posts.selectedPost,
@@ -60,22 +59,4 @@ function mapStateToProps(state,ownProps) {
   }
 }
 
-function mapDispatchToProps(dispatch,ownProps){
-  return{
-    loadPost: (data)=> dispatch(loadPost(data)),
-    upVotePost: (data)=> dispatch(upVotePost(data)),
-    downVotePost: (data)=> dispatch(downVotePost(data)),
-    deletePost: (data)=> dispatch(removePost(data)),
-    loadComments: (data)=> dispatch(loadComments(data)),
-    upVoteComment: (data)=> dispatch(upVoteComment(data)),
-    downVoteComment: (data)=> dispatch(downVoteComment(data)),
-    deleteComment: (data)=> dispatch(removeComment(data)),
-    openCreateCommentModal: (data) => dispatch(openCreateCommentModal(data)),
-    openEditCommentModal: (data) => dispatch(openEditCommentModal(data)),
-    onUpdateComment: (data) => dispatch(updateComment(data)),
-    onCreateComment: (data) => dispatch(createComment(data)),
-    resetEditComment: (data) =>dispatch(resetEditComment(data))
-  }
-}
-
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(PostView))
+export default withRouter(connect(mapStateToProps,actions)(PostView))
