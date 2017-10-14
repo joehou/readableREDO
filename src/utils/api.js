@@ -34,7 +34,7 @@ export function fetchCommentsCount(post){
 export function fetchPost (post) {
     return fetch(`${api}/posts/${post}`, {headers})
       .then(res => res.json())
-      .then(post=> post)
+      .then(post=> fetchCommentsCount(post).then(count=> {post.commentCount=count;return post}))
 }
 
 export function fetchPosts (category) {

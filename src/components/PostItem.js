@@ -20,12 +20,13 @@ function PostItem(props){
       </div>
       <div className="post-content">
         <div className="post-header">
-          <h2><Link to={`/${post.category}/${post.id}`} onClick={_=>onSelectPost(post)}>{post.title}</Link> comments:{post.commentCount}</h2>
+          <h2><Link to={`/${post.category}/${post.id}`} onClick={_=>onSelectPost(post)}>{post.title}</Link> </h2>
           <div>
             <Link to={`/${post.id}/edit`}><EditIcon/></Link>
             <span to={`/${post.id}/delete`} onClick={event=> onDeletePost(post)}><TrashIcon/></span>
           </div>
         </div>
+        <span>comments:{post.commentCount}</span>
         <p>{post.body}</p>
         <span className="author">Posted by {post.author} at {new Date(post.timestamp).toISOString().slice(0, 10)}</span>
       </div>
