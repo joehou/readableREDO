@@ -150,6 +150,7 @@ function posts ( state = initialPostState,action ) {
           editPost: action.post
         }
       case types.LOAD_POSTS_SUCCESS:
+        console.log(action.posts)
         return {
             ...state,
             posts: action.posts
@@ -221,7 +222,8 @@ const blankPost={
   title: "",
   author: "",
   category: "react",
-  body: ""
+  body: "",
+  commentCount: 0
 }
 
 const initialPostState= {

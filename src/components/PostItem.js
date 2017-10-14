@@ -20,7 +20,7 @@ function PostItem(props){
       </div>
       <div className="post-content">
         <div className="post-header">
-          <h2><Link to={`/${post.category}/${post.id}`} onClick={_=>onSelectPost(post)}>{post.title}</Link></h2>
+          <h2><Link to={`/${post.category}/${post.id}`} onClick={_=>onSelectPost(post)}>{post.title}</Link> comments:{post.commentCount}</h2>
           <div>
             <Link to={`/${post.id}/edit`}><EditIcon/></Link>
             <span to={`/${post.id}/delete`} onClick={event=> onDeletePost(post)}><TrashIcon/></span>

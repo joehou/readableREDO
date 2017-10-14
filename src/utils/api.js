@@ -24,6 +24,13 @@ export function fetchComments(post){
     .then(comments=>comments)
 }
 
+export function fetchCommentsCount(post){
+  return fetch(`${api}/posts/${post.id}/comments`,{headers})
+    .then(res =>res.json())
+    .then(comments=>comments)
+    .then(comments=>comments.length)
+}
+
 export function fetchPost (post) {
     return fetch(`${api}/posts/${post}`, {headers})
       .then(res => res.json())
@@ -32,10 +39,11 @@ export function fetchPost (post) {
 
 export function fetchPosts (category) {
     if (!category){
-     console.log("fetching posts for all")
      return fetch(`${api}/posts`, { headers })
         .then(res => res.json())
-        .then(posts => posts)
+        .then(posts =>{
+          return Promise.all(posts.map(post=> fetchCommentsCount(post).then(count=> {post.commentCount=count;return post}) )).then(val=>{console.log(val);return val})
+        })
     }else{
         console.log("fetching posts for ", category)
         return fetch(`${api}/${category}/posts`, {headers})

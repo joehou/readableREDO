@@ -40,6 +40,7 @@ class PostList extends Component{
 }
 
 function mapStateToProps({posts},ownProps) {
+  console.log(posts.posts)
   return {
     posts: posts.posts.filter(post=>!ownProps.match.params.category || post.category===ownProps.match.params.category).sort(sortBy("-"+posts.sortColumn))
   }
