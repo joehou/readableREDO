@@ -34,7 +34,7 @@ export function fetchCommentsCount(post){
 export function fetchPost (post) {
     return fetch(`${api}/posts/${post}`, {headers})
       .then(res => res.json())
-      .then(post=> fetchCommentsCount(post).then(count=> {post.commentCount=count;return post}))
+      .then(post=> Object.keys(post).length===0?{}: fetchCommentsCount(post).then(count=> {post.commentCount=count;return post}))
 }
 
 export function fetchPosts (category) {
@@ -42,7 +42,7 @@ export function fetchPosts (category) {
      return fetch(`${api}/posts`, { headers })
         .then(res => res.json())
         .then(posts =>{
-          return Promise.all(posts.map(post=> fetchCommentsCount(post).then(count=> {post.commentCount=count;return post}) )).then(val=>{console.log(val);return val})
+          return Object.keys(posts).length===0?{}: Promise.all(posts.map(post=> fetchCommentsCount(post).then(count=> {post.commentCount=count;return post}) )).then(val=>{console.log(val);return val})
         })
     }else{
         console.log("fetching posts for ", category)
